@@ -22,6 +22,14 @@ Next time:
 Additional research:
 - `stack exec --package clash-ghc -- clashi` to run the interpreter.
 
+### 2022-01-20
+
+Meetup notes:
+- `stack exec clashi` in book-code (must have done `stack build` first)
+- `stack init` to do minimal stack project setup in current dir; but ended up
+  just copying and tweaking the `book-code` file.
+- `stack run Hello` to run our program
+
 
 
 <!-------------------------------------------------------------------->

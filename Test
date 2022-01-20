@@ -11,3 +11,6 @@ cd "$basedir"
     rcbc=https://github.com/gergoerdi/retroclash-book-code
     git clone -o upstream  "$rcbc" book-code
 }
+
+stack build
+stack run Hello

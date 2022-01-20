@@ -1,0 +1,68 @@
+name: clash-play
+version: 0.1.0
+category: hardware
+
+custom-setup:
+  dependencies:
+    - base
+    - Cabal
+    - clashilator
+
+dependencies:
+  - base >= 4.7 && < 5
+  - clash-prelude
+  - ghc-typelits-natnormalise
+  - ghc-typelits-extra
+  - ghc-typelits-knownnat
+
+  - retroclash-lib
+  - retroclash-sim
+  - clash-shake
+
+  - mtl
+  - transformers
+  - extra
+  - array
+  - lens
+  - sdl2
+
+# Anything that Clash uses by default should go here
+default-extensions:
+  - BinaryLiterals
+  - ConstraintKinds
+  - DataKinds
+  - DeriveAnyClass
+  - DeriveGeneric
+  - DeriveLift
+  - DerivingStrategies
+  - ExplicitForAll
+  - ExplicitNamespaces
+  - FlexibleContexts
+  - FlexibleInstances
+  - KindSignatures
+  - MagicHash
+  - MonoLocalBinds
+  - NoImplicitPrelude
+  - NoMonomorphismRestriction
+  - NoStarIsType
+  - NoStrictData
+  - NoStrict
+  - QuasiQuotes
+  - ScopedTypeVariables
+  - TemplateHaskellQuotes
+  - TemplateHaskell
+  - TypeApplications
+  - TypeFamilies
+  - TypeOperators
+  - UnicodeSyntax
+
+ghc-options:
+  -fexpose-all-unfoldings -fno-worker-wrapper
+  -fplugin GHC.TypeLits.KnownNat.Solver
+  -fplugin GHC.TypeLits.Normalise
+  -fplugin GHC.TypeLits.Extra.Solver
+
+executables:
+  hello:
+    source-dirs: src/
+    main: Hello.hs
