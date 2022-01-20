@@ -1,0 +1,13 @@
+#!/bin/bash
+set -eu -o pipefail
+
+basedir=$(cd "$(dirname "$0")" && pwd -P)
+cd "$basedir"
+
+[[ -d book-code ]] || {
+    #   This is just for developer reference; we don't use this code in
+    #   our repo. Thus we don't use a submodule because we don't want or
+    #   need to lock the version to a specific commit.
+    rcbc=https://github.com/gergoerdi/retroclash-book-code
+    git clone -o upstream  "$rcbc" book-code
+}
