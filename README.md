@@ -10,6 +10,9 @@ GitHub.
 
 Do not expect the code in this repo to work or do anything useful.
 
+Handy notes:
+- `Test` builds and (soon) runs a few tests
+- `i` runs the interpreter; pass in filenames to load on the command line
 
 
 <!-------------------------------------------------------------------->
