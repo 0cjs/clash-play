@@ -67,6 +67,10 @@ Glasgow 21:00, Tokyo 06:00 next day.
       responsibility to avoid, e.g., using a pin wired to a switch as an
       output set to high that gets shorted when the switch is closed.
 
+2022-01-24/25bis w/Stuart
+- Add `module Hello where` to `src/Hello.hs` and now `:verilog` works
+  in clashi. Generates files under `verilog/` in the CWD.
+
 ### Future Work
 
 - Fix tmate issues with `Esc` timeout and, if we can find it, `C-p`
