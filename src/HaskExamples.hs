@@ -3,6 +3,8 @@
 
 module HaskExamples where
 
+import Prelude
+
 data List1 α = Nil1 | Cons α (List1 α)      deriving (Show, Eq, Ord)
 
 -- Infix data constructor :> must start with a `:`, not any other punctuation.
