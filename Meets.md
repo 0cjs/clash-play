@@ -71,9 +71,14 @@ Glasgow 21:00, Tokyo 06:00 next day.
 - Add `module Hello where` to `src/Hello.hs` and now `:verilog` works
   in clashi. Generates files under `verilog/` in the CWD.
 
+2022-01-25/26 (t/w) cjs,sjn
+- `tmate show-options -s | grep esc` to see that default esc timeout is 500
+  (in milliseconds); `tmate set-option -g escape-time 0` to remove the
+  delay. cjs is documenting more of the messy tmate interface in sedoc later.
+
 ### Future Work
 
-- Fix tmate issues with `Esc` timeout and, if we can find it, `C-p`
+- Fix tmate issues with `C-p` being held until next char is sent
 - Work thorugh details of `src/Button1.hs`, including `makeTopEntity`
   declaration. (Examine generated files under `.stack-work/`?)
 - Work through §2.1 example in `src/Active.hs` (and use better names?)
