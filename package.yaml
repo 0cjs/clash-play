@@ -65,4 +65,4 @@ ghc-options:
 executables:
   hello:
     source-dirs: src/
-    main: Hello.hs
+    main: Hello.main

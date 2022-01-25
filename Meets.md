@@ -11,6 +11,7 @@ Future Work
 - Make `i` run the interpreter with compiler directives from the
   `default-extensions` list from `package.yaml`.
 - Better tests run by `Test`.
+- Investigate whether `.cabal` file should be checked in. [[package-yaml]]
 
 
 Day-by-day
@@ -22,7 +23,35 @@ Weekdays are m/t/w/r/f/s/u.
 2022-01-25/26 (t/w) cjs,sjn
 - `tmate show-options -s | grep esc` to see that default esc timeout is 500
   (in milliseconds); `tmate set-option -g escape-time 0` to remove the
-  delay. cjs is documenting more of the messy tmate interface in sedoc later.
+  delay. cjs is documenting more of the messy tmate interface in sedoc
+  later.
+- `package.yaml` is part of the [hpack] standard, a modern alternative to
+  Cabal. cabal2nix and stack natively support this; an `hpack` executable
+  can generate a `.cabal` file for other systems.
+- `src/HaskExamples.hs` was failing becuse `Show` wasn't defined; our build
+  definition was using `NoImplicitPrelude` so we needed to add an explicit
+  `import Prelude`. (This was not a problem when we were running the
+  interpreter stand-alone because those `project.yaml` directives are not
+  used by stack when running the interpreter, only the compiler.)
+- The [GHC docs §5.9.2][ghc5.9.2] state that the entry point must be
+  Main.min. This was definitely not true 15 years ago, and appears still to
+  be untrue. In the cabal `main-is:` argument if you specify a string
+  ending in `.hs` it takes this as a file that must contain `Main.main`.
+  However, if you specify a module name and definition (which must be an
+  `IO ()` action) it will happily use that, e.g., `Hello.myEntryPoint`.
+- After somne thought, we've decided not to commit the `clash-play.cabal`
+  generated from `package.yaml`. Whether it's better to commit or not
+  depends on the situation; at the moment not commiting seems easier
+  for us. For discussion about the advantages and problems from committing
+  the `.cabal` files see [stack #5210] and [snoyman 2020-03-04]. Also
+  [stack.yaml vs cabal package file][package-yaml] provides some insight
+  into what `package.yaml` is.
+
+[ghc5.9.2]: https://downloads.haskell.org/ghc/latest/docs/html/users_guide/packages.html#the-main-package
+[hpack]: https://github.com/sol/hpack
+[package-yaml]: https://docs.haskellstack.org/en/stable/stack_yaml_vs_cabal_package_file/
+[snoyman 2020-03-04]: https://www.fpcomplete.com/blog/storing-generated-cabal-files/
+[stack #5210]: https://github.com/commercialhaskell/stack/issues/5210
 
 2022-01-24/25bis w/Stuart
 - Add `module Hello where` to `src/Hello.hs` and now `:verilog` works
@@ -87,9 +116,6 @@ Weekdays are m/t/w/r/f/s/u.
 - Additional research:
   - `stack exec --package clash-ghc -- clashi` to run the interpreter.
 
-
-
-<!-------------------------------------------------------------------->
+[af]: http://learnyouahaskell.com/functors-applicative-functors-and-monoids
 [retroclash-book-code]: https://github.com/gergoerdi/retroclash-book-code.git
 [clash-shake]: https://hackage.haskell.org/package/clash-shake
-[af]: http://learnyouahaskell.com/functors-applicative-functors-and-monoids
