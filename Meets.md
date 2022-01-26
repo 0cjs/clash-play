@@ -5,19 +5,39 @@ Future Work
 -----------
 
 - Fix tmate issues with `C-p` being held until next char is sent
-- Work thorugh details of `src/Button1.hs`, including `makeTopEntity`
-  declaration. (Examine generated files under `.stack-work/`?)
-- Work through §2.1 example in `src/Active.hs` (and use better names?)
 - Make `i` run the interpreter with compiler directives from the
   `default-extensions` list from `package.yaml`.
 - Better tests run by `Test`.
-- Investigate whether `.cabal` file should be checked in. [[package-yaml]]
 
 
 Day-by-day
 ----------
 
 Glasgow 21:00, Tokyo 06:00 next day. Weekdays are m/t/w/r/f/s/u.
+
+2022-01-26/27 (w/r) cjs,sjn
+- Generated files under `.stack-work/` do not include the TH-processed source.
+  So we'll just look further at what exactly the TH stuff is doing later.
+- Naming in `Active.hs` is a bit confusing 
+- Working through `Active.hs` we realized:
+  - In `instance isActive High`, `High` is not a type or type constructor, it's
+    a _data constructor_ (i.e., in the data language, not the type langauge, as
+    cjs thinks of things).
+  - It turns out that we're here using _datatype promotion_ [[GHC §7.9]] from
+    the `-XDataKinds` extension. (cjs needs to read up again on kinds as a
+    refresher.)
+  - Looking at that cjs was reminded of GADTs [[GHC §7.4.8]] (`-XGADTs`), and
+    we started looking at that. cjs needs a refresher on the motivation for
+    that extension, so the next exercise will be to walk through the example
+    given at the start of that section and demonstrate the problem that occurs
+    if you try to do it without GADTs. (Then maybe read through the previous
+    section "Declaring data types with explicit constructor signatures" [[GHC
+    §7.4.7]] (`-XGADTSyntax`) as well; there must be something important in it
+    if it's that long.)
+
+[GHC §7.9]: https://downloads.haskell.org/~ghc/7.8.4/docs/html/users_guide/promotion.html
+[GHC §7.4.8]: https://downloads.haskell.org/~ghc/7.8.4/docs/html/users_guide/data-type-extensions.html#gadt
+[GHC §7.4.7]: https://downloads.haskell.org/~ghc/7.8.4/docs/html/users_guide/data-type-extensions.html#gadt-style
 
 2022-01-25/26 post-meet research by cjs:
 - I've [documented in sedoc][sedoc/main] the GHC [`-main-is ⟨thing⟩`]
