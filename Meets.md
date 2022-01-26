@@ -17,8 +17,16 @@ Future Work
 Day-by-day
 ----------
 
-Glasgow 21:00, Tokyo 06:00 next day.
-Weekdays are m/t/w/r/f/s/u.
+Glasgow 21:00, Tokyo 06:00 next day. Weekdays are m/t/w/r/f/s/u.
+
+2022-01-25/26 post-meet research by cjs:
+- I've [documented in sedoc][sedoc/main] the GHC [`-main-is ⟨thing⟩`]
+  option, Cabal `main-is:` (which is an entirely different thing!) and the
+  `main:` options (a combination of the two above) for hpack/Stack
+  `package.yaml`files.
+
+[`-main-is ⟨thing⟩`]: https://downloads.haskell.org/~ghc/9.2.1-rc1/docs/html/users_guide/phases.html#ghc-flag--main-is%20%E2%9F%A8thing%E2%9F%A9
+[sedoc/main]: https://github.com/0cjs/sedoc/blob/master/lang/haskell/main.md
 
 2022-01-25/26 (t/w) cjs,sjn
 - `tmate show-options -s | grep esc` to see that default esc timeout is 500
