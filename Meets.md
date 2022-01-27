@@ -16,6 +16,19 @@ Day-by-day
 
 Glasgow 21:00, Tokyo 06:00 next day. Weekdays are m/t/w/r/f/s/u.
 
+2022-01-27/28 (r/f) cjs,sjn,croys
+- Partial fix for GHC options for `i`
+- GADTs worked out (`src/HaskStuff.hs`)
+- Use of extensions in interpreters:
+  - `stash exec ghci` uses only what's specified on the command line/in files
+  - `stash ghci` uses extensions listed in `package.yaml`
+  - `clashi` uses an internal set, ignoring `package.yaml`
+  - An extension you need for both compilation and clashi interpreter that is
+    not already in the standard Clash set must be added as a `{-# LANGUAGE ...
+    #-}` directive (until we find something better; maybe a hack in `i`?) Some
+    extensions, such as NoStarIsType may simply break the Clash interpreter (it
+    produces a mysterious error).
+
 2022-01-26/27 (w/r) cjs,sjn
 - Generated files under `.stack-work/` do not include the TH-processed source.
   So we'll just look further at what exactly the TH stuff is doing later.
