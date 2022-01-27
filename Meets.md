@@ -5,8 +5,9 @@ Future Work
 -----------
 
 - Fix tmate issues with `C-p` being held until next char is sent
-- Make `i` run the interpreter with compiler directives from the
-  `default-extensions` list from `package.yaml`.
+- `i` fixes to use standard environment from `package.yaml`:
+  - Should use compiler directives from `default-extensions:`
+  - Should use options from `ghc-options:`
 - Better tests run by `Test`.
 
 
