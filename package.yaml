@@ -57,6 +57,7 @@ default-extensions:
   - UnicodeSyntax
 
 ghc-options:
+  -fwarn-incomplete-patterns
   -fexpose-all-unfoldings -fno-worker-wrapper
   -fplugin GHC.TypeLits.KnownNat.Solver
   -fplugin GHC.TypeLits.Normalise
