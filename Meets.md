@@ -28,6 +28,12 @@ Glasgow 21:00, Tokyo 06:00 next day. Weekdays are m/t/w/r/f/s/u.
     #-}` directive (until we find something better; maybe a hack in `i`?) Some
     extensions, such as NoStarIsType may simply break the Clash interpreter (it
     produces a mysterious error).
+- Add "Implicit kinds and KindSignatures" to `src/HaskExamples.hs` showing
+  implicit inference of kinds (which Haskell has been doing for type classes
+  all along) and explicit signature equivalance.
+- Clash uses `NoStarIsType`; see [8.6.x migration] for that vs. `StarIsType`.
+
+[8.6.x migration]: https://gitlab.haskell.org/ghc/ghc/-/wikis/migration/8.6
 
 2022-01-26/27 (w/r) cjs,sjn
 - Generated files under `.stack-work/` do not include the TH-processed source.
