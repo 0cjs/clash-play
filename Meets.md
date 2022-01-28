@@ -4,7 +4,11 @@
 Future Work
 -----------
 
+Short-term:
 - Fix tmate issues with `C-p` being held until next char is sent
+- HaskExamples datatype promotion section: use `Nat` type variable
+
+Long-term:
 - `i` fixes to use standard environment from `package.yaml`:
   - Should use compiler directives from `default-extensions:`
   - Should use options from `ghc-options:`
@@ -32,6 +36,9 @@ Glasgow 21:00, Tokyo 06:00 next day. Weekdays are m/t/w/r/f/s/u.
   implicit inference of kinds (which Haskell has been doing for type classes
   all along) and explicit signature equivalance.
 - Clash uses `NoStarIsType`; see [8.6.x migration] for that vs. `StarIsType`.
+- HaskExamples datatype promotion section currently covers use of `Type` (i.e.
+  `*`) only; we still need to extend the example to use a more constrained kind
+  variable of `Type → Nat → Type` instead of `Type → Type → Type`.
 
 [8.6.x migration]: https://gitlab.haskell.org/ghc/ghc/-/wikis/migration/8.6
 

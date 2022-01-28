@@ -70,7 +70,7 @@ class ExplicitKindly (α ∷ Type → Type) where
     ekf ∷ α Int → Bool
 
 ----------------------------------------------------------------------
--- Datatype Promotion
+-- Datatype Promotion (DataKinds extension)
 -- https://downloads.haskell.org/~ghc/8.10.4/docs/html/users_guide/glasgow_exts.html#datatype-promotion
 --
 -- `Type` below is from the Clash prelude which import/exports Data.Kind.Type
@@ -83,7 +83,14 @@ data Ze     -- Zero length
 data Su n   -- Successor (Su Ze = 1, etc.)
             -- Problem is, you can say `Su Char` because _n_ not restricted
 
--- KindSignatures extension gives us the `∷ Type → ...` ability
+--  KindSignatures extension gives us the `∷ Type → ...` ability
 data Vec ∷ Type → Type → Type where
     VNil  ∷ Vec a Ze
     VCons ∷ a → Vec a n → Vec a (Su n)
+
+--  If we do not provide an explicit kind signature we must provide the
+--  parameters after the type name that it infers the correct
+--  kind * → * → * signature rather than just kind *.
+data VecInf a n where
+    VINil  ∷ VecInf a Ze
+    VICons ∷ a → VecInf a n → VecInf a (Su n)
