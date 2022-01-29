@@ -94,3 +94,28 @@ data Vec ∷ Type → Type → Type where
 data VecInf a n where
     VINil  ∷ VecInf a Ze
     VICons ∷ a → VecInf a n → VecInf a (Su n)
+
+----------------------------------------------------------------------
+-- 2022-01-28/29 discussion
+
+-- Renaming a parameter does not change the type of a function:
+f, g ∷ Int -> Int
+f x = x
+g y = y
+-- And f y = y would be the _same_ function as f x = x.
+-- Is this correct behaviour? cjs thinks so, and thinks that this is called
+-- "alpha equivalence."
+
+-- Renaming a parameter does not change the type of a constructor function.
+-- But it should?
+--
+data P α β where
+    Q ∷ γ → δ → P γ δ   -- should not be same as this?: Q ∷ ε → φ → P ε φ
+                        -- nor the same as this?        Q ∷ α → β → P α β
+    deriving (Eq)
+--
+-- (cjs doesn't see why it should. I see why you want a parameter to be
+-- unified in type with other uses of the same name _within_ a constructor
+-- declaration, but not why there should be any unification _between_
+-- constructor declarations or between a constructor declaration and the
+-- type declaration.)

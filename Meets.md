@@ -20,6 +20,9 @@ Day-by-day
 
 Glasgow 21:00, Tokyo 06:00 next day. Weekdays are m/t/w/r/f/s/u.
 
+2022-01-28/29 (f/s) cjs,sjn,croys
+- Discussion of parameters to type constructors and data constructors
+
 2022-01-27/28 (r/f) cjs,sjn,croys
 - Partial fix for GHC options for `i`
 - GADTs worked out (`src/HaskStuff.hs`)
@@ -36,16 +39,18 @@ Glasgow 21:00, Tokyo 06:00 next day. Weekdays are m/t/w/r/f/s/u.
   implicit inference of kinds (which Haskell has been doing for type classes
   all along) and explicit signature equivalance.
 - Clash uses `NoStarIsType`; see [8.6.x migration] for that vs. `StarIsType`.
+  (That example assumes the [TypeOperators] extension.)
 - HaskExamples datatype promotion section currently covers use of `Type` (i.e.
   `*`) only; we still need to extend the example to use a more constrained kind
   variable of `Type → Nat → Type` instead of `Type → Type → Type`.
 
 [8.6.x migration]: https://gitlab.haskell.org/ghc/ghc/-/wikis/migration/8.6
+[TypeOperators]: https://typeclasses.com/ghc/type-operators
 
 2022-01-26/27 (w/r) cjs,sjn
 - Generated files under `.stack-work/` do not include the TH-processed source.
   So we'll just look further at what exactly the TH stuff is doing later.
-- Naming in `Active.hs` is a bit confusing 
+- Naming in `Active.hs` is a bit confusing
 - Working through `Active.hs` we realized:
   - In `instance isActive High`, `High` is not a type or type constructor, it's
     a _data constructor_ (i.e., in the data language, not the type langauge, as
