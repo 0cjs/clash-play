@@ -38,6 +38,30 @@ Glasgow 21:00, Tokyo 06:00 next day. Weekdays are m/t/w/r/f/s/u.
     it from `[0, 0, 1]` to `[False, False, True]`.
   - Convention is to use `Bit` for levels (0=GND 1=Vcc) and `Bool` for
     signal values (e.g., `/RESET` asserted = True = 0 = low level).
+- cjs/sjn discuss automated testing. Roughly it looks like this:
+  - Virtually all of the design testing is run in the Clash simulator
+    driven by Haskell code. That driver generates test vectors and expected
+    output (either hard coded or programatically generated), feeds the
+    input to the simulator and compares the simulator's output with the
+    expected output. (This can be done both for units of the code and for
+    the fully synthesized design, à la regular software unit and functional
+    tests.)
+  - The remainder of the automated testing is, "the vendor HDL compiler
+    successfully compiles the code." This will catch things like "this chip
+    can't meet the timing constraints (i.e., run at the speed) you
+    requested."
+  - Further non-automated debugging can be done with:
+    - The vendor's HDL toolchain, which can e.g. add a logic analyzer into
+      the design, let us feed its simulator stuff and watch the output.
+    - 'Scope on board.
+    - If the above finds problems in our Clash design, we generate new
+      Clash simulator tests to get coverage of that. If it finds problems
+      on our board, we fix the PCB. It should never find problems with the
+      FPGA itself or the vendor HDL toolchain (except perhaps in how our
+      build system feeds the vendor toolchain).
+  - Next step in our testing framework is to expand `Hello` to check the
+    output? Alternatively, we can go with an input file fed to `main` which
+    prints output and which we then externally compare with a diff program.
 
 2022-01-28/29 (f/s) cjs,sjn,croys
 - Discussion of parameters to type constructors and data constructors
