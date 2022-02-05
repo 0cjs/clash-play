@@ -20,6 +20,13 @@ Day-by-day
 
 Glasgow 21:00, Tokyo 06:00 next day. Weekdays are m/t/w/r/f/s/u.
 
+2022-02-04/05 (s/u)
+- HaskExamples: ADTs vs. GADTs
+  - The two are always distinguished syntatically with `=` vs. `where`
+    after the `data ...`.
+  - GADT declarations infer Kind only; unlike ADTs the variable names are
+    ignored.
+
 2022-01-28/29 (f/s) cjs,sjn,croys
 - Discussion of parameters to type constructors and data constructors
 

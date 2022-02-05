@@ -96,26 +96,24 @@ data VecInf a n where
     VICons ∷ a → VecInf a n → VecInf a (Su n)
 
 ----------------------------------------------------------------------
--- 2022-01-28/29 discussion
+-- ADTs vs. GADTs
 
 -- Renaming a parameter does not change the type of a function:
 f, g ∷ Int -> Int
-f x = x
-g y = y
--- And f y = y would be the _same_ function as f x = x.
--- Is this correct behaviour? cjs thinks so, and thinks that this is called
--- "alpha equivalence."
+f x = x             -- f y = y would be the _same_ function as f x = x.
+                    -- This is "alpha equivalence."
+g y = y             -- Same type.
 
--- Renaming a parameter does not change the type of a constructor function.
--- But it should?
---
-data P α β where
-    Q ∷ γ → δ → P γ δ   -- should not be same as this?: Q ∷ ε → φ → P ε φ
-                        -- nor the same as this?        Q ∷ α → β → P α β
-    deriving (Eq)
---
--- (cjs doesn't see why it should. I see why you want a parameter to be
--- unified in type with other uses of the same name _within_ a constructor
--- declaration, but not why there should be any unification _between_
--- constructor declarations or between a constructor declaration and the
--- type declaration.)
+-- ADT (because using `data … =` syntax)
+data A α β          -- Introduces bound variables, but cannot constrain
+                    --    them here to same type by using same name.
+    = A1 α α        -- Constrains types to be same only in this constructor.
+ -- | A2 γ γ        -- Not allowed because γ is free.
+
+-- GADT (because using `data … where` syntax)
+data P1 α β where       -- Variable _names_ are meaningless; just kind inferred.
+    Q1 ∷ γ → δ → P1 γ δ -- is the same type as Q ∷ α → β → P α β
+
+-- Thus more clear to use KindSignatures with GADTs:
+data P2 ∷ Type → Type → Type where
+    Q2 ∷ γ → δ → P2 γ δ
