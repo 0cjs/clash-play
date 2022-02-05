@@ -26,6 +26,18 @@ Glasgow 21:00, Tokyo 06:00 next day. Weekdays are m/t/w/r/f/s/u.
     after the `data ...`.
   - GADT declarations infer Kind only; unlike ADTs the variable names are
     ignored.
+- IsActive `data Polarity = High | Low`:
+  - These data constructors are never used; they exist only to create the
+    promoted type constructors created by the `DataKinds` extension.
+  - Were this a library, the interface is just `Active High` and `Active
+    Low`  (e.g., `Signal System (Active Low)`); all the rest is just
+    infrastructure.
+- §2.3.3 (p.24) exercise:
+  - You can swap the `Signal System Bit` for `Signal System Bool` in
+    `topEntity` with no problems, so long as you change the input you give
+    it from `[0, 0, 1]` to `[False, False, True]`.
+  - Convention is to use `Bit` for levels (0=GND 1=Vcc) and `Bool` for
+    signal values (e.g., `/RESET` asserted = True = 0 = low level).
 
 2022-01-28/29 (f/s) cjs,sjn,croys
 - Discussion of parameters to type constructors and data constructors
