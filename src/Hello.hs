@@ -13,6 +13,7 @@
 module Hello where
 
 import Clash.Prelude
+import Test.HUnit
 
 topEntity ∷ Signal System Bit → Signal System Bit
 topEntity = id
@@ -21,3 +22,16 @@ main ∷ IO ()
 main = print $ sampleN 3 $ topEntity input1
     where
     input1 = fromList [low, low, high]
+
+----------------------------------------------------------------------
+
+mainTest ∷ IO Counts
+mainTest = runTestTT tests
+
+tests = TestList [test1]
+
+test1 = TestCase (assertEqual "topEntity" expected actual)
+    where
+        expected = input
+        actual   = sampleN 3 $ topEntity $ fromList input
+        input    = [low, low, high]

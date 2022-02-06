@@ -26,6 +26,8 @@ dependencies:
   - lens
   - sdl2
 
+  - HUnit
+
 # Anything that Clash uses by default should go here
 default-extensions:
   - BinaryLiterals
@@ -65,5 +67,10 @@ ghc-options:
 
 executables:
   hello:
-    source-dirs: src/
     main: Hello.main
+    source-dirs: src/
+
+tests:
+  hello-test:
+    main: Hello.mainTest
+    source-dirs: src/

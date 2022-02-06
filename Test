@@ -12,5 +12,4 @@ cd "$basedir"
     git clone -o upstream  "$rcbc" book-code
 }
 
-stack build
-stack run Hello
+stack build --test

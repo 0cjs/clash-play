@@ -20,6 +20,34 @@ Day-by-day
 
 Glasgow 21:00, Tokyo 06:00 next day. Weekdays are m/t/w/r/f/s/u.
 
+2022-02-05/06 (s/m)
+- HUnit test for Hello.hs
+- Runs the simulator just like `main`, with the same input list, and tests that
+  the output list is as expected (equal to input since `topEntity = id`).
+- We needed to add `HUnit-1.6.2.0` (latest version according to Hackage's
+  [Test.HUnit] page) to the `extra-deps:` section of `stack.yaml` because HUnit
+  is not included in the `clash-1.4.3` resolver. This does not add it as a
+  dependency to any part of our project, it just makes it available from Stack.
+- `HUnit` is then added to the `dependencies:` section of `package.yaml` so
+  that our code is linked to it.
+- A new `tests:` top-level section is added to `package.yaml` to specify a
+  program to compile and run that will run the tests. We specify a different
+  function (`mainTest`) in the same `Hello` module for this, though of course
+  the executable we generate for this has to have a different name
+  (`hello-test` instead of `hello`). Eventually this will no doubt be split out
+  into a separate module that brings together the tests from all our other
+  modules.
+- In the `Test` script we change `stack build` to `stack build --test` so all
+  test programs are run as well, and we can now drop the `stack run hello`.
+- We use just HUnit right now, but it's anticipated we'll add QuickCheck and/or
+  SmallCheck (exhaustive testing) later. The book §6.2.1 p.85 gives an example
+  of using QuickCheck.
+- Though we're running the simulator here, unit tests can also be done on the
+  individual pure functions describing the device. (There's no point doing that
+  yet becuase the function describing our Hello device is `id`.)
+
+[Test.HUnit]: https://hackage.haskell.org/package/HUnit-1.6.2.0/docs/Test-HUnit.html
+
 2022-02-04/05 (s/u)
 - HaskExamples: ADTs vs. GADTs
   - The two are always distinguished syntatically with `=` vs. `where`
