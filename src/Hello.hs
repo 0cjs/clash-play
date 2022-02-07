@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -F -pgmF htfpp #-}
+
 -- XXX until we figure out how to tell the interpreter to use package.yaml
 {-# LANGUAGE UnicodeSyntax #-}
 
@@ -10,10 +12,10 @@
         annotation. If you want to synthesize a specific binder in
         "src/Hello.hs", use '-main-is=myTopEntity'.
 -}
-module Hello where
+module Hello (main, htf_thisModulesTests) where
 
 import Clash.Prelude
-import Test.HUnit
+import Test.Framework
 
 topEntity ∷ Signal System Bit → Signal System Bit
 topEntity = id
@@ -25,12 +27,8 @@ main = print $ sampleN 3 $ topEntity input1
 
 ----------------------------------------------------------------------
 
-mainTest ∷ IO Counts
-mainTest = runTestTT tests
-
-tests = TestList [test1]
-
-test1 = TestCase (assertEqual "topEntity" expected actual)
+test_hello =
+    do  assertEqual expected actual
     where
         expected = input
         actual   = sampleN 3 $ topEntity $ fromList input

@@ -1,9 +1,10 @@
+{-# OPTIONS_GHC -F -pgmF htfpp #-}
 {-# LANGUAGE UnicodeSyntax #-}
 
-module C3_1 where
+module C3_1 (htf_thisModulesTests) where
 
 import Clash.Prelude
-import Test.HUnit
+import Test.Framework
 
 topEntity
     ∷ "BTN" ::: Signal System Bit
@@ -12,11 +13,8 @@ topEntity = fmap complement
 
 ----------------------------------------------------------------------
 
-tests ∷ IO Counts
-tests = runTestTT $ TestList [test1]
-
-test1 = TestCase (assertEqual "topEntity" expected actual)
+test_1 = do assertEqual expected actual
     where
         expected = [high, high, low]
         actual   = sampleN 3 $ topEntity $ fromList input
-        input    = [low, low, high]
+        input    = [high, low, high]

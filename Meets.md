@@ -22,6 +22,39 @@ Glasgow 21:00, Tokyo 06:00 next day. Weekdays are m/t/w/r/f/s/u.
 
 2022-02-06/07 (m/t) cjs sjn
 - Type in sample program from §3.1, add unit test
+- Switch from plain HUnit to [HTF]
+  - The clash resolver provides a version of HTF. HTF has HUnit as a
+    dependency, which means that it's always been available through the
+    clash resolver but perhaps hidden in some way? At any rate, once I add
+    `HTF` to `dependencies:` in `package.yaml` I no longer need to specify
+    a version of HUnit in `stack.yaml`.
+  - Used [TLUG website] as a reference for configuration and setup.
+  - New `src/UnitTests.hs` as our master unit test collector and driver. We
+    use `unitTestMain` as the main function here to avoid conflicting with
+    `Hello.main`; for more on this see below.
+  - `src/{Hello,C3_1}.hs` updated to have HTF tests.
+  - In `package.yaml` for the `hello` executable we get a warning that
+    `Hello` should be added to `exposed-modules` or `other-modules` in the
+    `.cabal` file.
+    - This is kind of fixed by adding `other-modules: Hello`, as it
+      suggests, though that in turn emits another (smaller) warning:
+      `Warning: Enabling workaround for Main module 'Hello' listed in
+      'other-modules'`. There's also an `illegally!` that pops out alone
+      on a line near there; it's not clear what that's connected to.
+    - It's not clear what's going on with this and it should probably be
+      investigated at some point, though possibly this will be fixed by
+      reworking how we deal with `main` functions (see below).
+  - Document in [README](./README.md) how to set up new files and tests.
+- The `main` conflicts above and other issues related to `main` are
+  probably best fixed by removing all `main` functions from files under
+  `src/` so that they're not automatically all compiled together by the
+  `source-dirs: src/` parameter. (Just giving each main function under
+  `src/` a different name doesn't help.) For the [TLUG website] project we
+  have a separate subdirectory called `app/` containing a file for the
+  `module Main` of each stand-alone program.
+
+[HTF]: https://hackage.haskell.org/package/HTF
+[TLUG website]: https://github.com/tlug/tlug.jp.git
 
 2022-02-05/06 (s/m)
 - HUnit test for Hello.hs

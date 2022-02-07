@@ -67,13 +67,6 @@ packages:
       sha256: 3a43dbbb1839521aae37a2baa3fb3ad0cc61a0a8fc4e3aec1f7dda15b92a0279
   original:
     hackage: monoidal-containers-0.6.0.1
-- completed:
-    hackage: HUnit-1.6.2.0@sha256:1a79174e8af616117ad39464cac9de205ca923da6582825e97c10786fda933a4,1588
-    pantry-tree:
-      size: 878
-      sha256: 4f20a5a33866171260d0ee1e256c27f53cc84d37a68d498c3e12347f4e3d05b4
-  original:
-    hackage: HUnit-1.6.2.0
 snapshots:
 - completed:
     size: 585817

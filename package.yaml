@@ -26,6 +26,7 @@ dependencies:
   - lens
   - sdl2
 
+  - HTF
   - HUnit
 
 # Anything that Clash uses by default should go here
@@ -69,11 +70,11 @@ executables:
   hello:
     main: Hello.main
     source-dirs: src/
+    other-modules: Hello        # XXX without this we get a warning; we need to
+                                # figure out what's going on and the proper fix
+                                # for this
 
 tests:
-  hello-test:
-    main: Hello.mainTest
-    source-dirs: src/
-  c3_1-test:
-    main: C3_1.tests
+  unit-tests:
+    main: UnitTest.unitTestMain
     source-dirs: src/

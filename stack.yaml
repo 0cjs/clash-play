@@ -8,5 +8,3 @@ extra-deps:
 
   - barbies-th-0.1.2
   - monoidal-containers-0.6.0.1
-
-  - HUnit-1.6.2.0
