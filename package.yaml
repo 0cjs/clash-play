@@ -74,3 +74,6 @@ tests:
   hello-test:
     main: Hello.mainTest
     source-dirs: src/
+  c3_1-test:
+    main: C3_1.tests
+    source-dirs: src/

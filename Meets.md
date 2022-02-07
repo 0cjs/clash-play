@@ -20,6 +20,9 @@ Day-by-day
 
 Glasgow 21:00, Tokyo 06:00 next day. Weekdays are m/t/w/r/f/s/u.
 
+2022-02-06/07 (m/t) cjs sjn
+- Type in sample program from §3.1, add unit test
+
 2022-02-05/06 (s/m)
 - HUnit test for Hello.hs
 - Runs the simulator just like `main`, with the same input list, and tests that
