@@ -17,5 +17,5 @@ Handy notes:
 
 <!-------------------------------------------------------------------->
 [retro]: https://unsafeperform.io/retroclash/
-[clash]: 
+[clash]: https://clash-lang.org/
 [book-code]: https://github.com/gergoerdi/retroclash-book-code
