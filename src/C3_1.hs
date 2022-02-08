@@ -3,18 +3,41 @@
 
 module C3_1 (htf_thisModulesTests) where
 
-import Clash.Prelude
+import qualified Clash.Prelude as CP
+import Clash.Prelude hiding ((.&.))
+
+import qualified Prelude as P
 import Test.Framework
 
-topEntity
-    ∷ "BTN" ::: Signal System Bit
-    → "LED" ::: Signal System Bit
-topEntity = fmap complement
+(∧), (∨) ∷ Bits a => a -> a -> a
+(∧) = (CP..&.)
+(∨) = (CP..|.)
 
 ----------------------------------------------------------------------
 
-test_1 = do assertEqual expected actual
+complementSignal
+    ∷ "BTN" ::: Signal System Bit
+    → "LED" ::: Signal System Bit
+complementSignal = fmap complement
+
+test_complement = assertEqual expected actual
     where
-        expected = [high, high, low]
-        actual   = sampleN 3 $ topEntity $ fromList input
+        expected = [low, high, low]
+        actual   = sampleN 3 $ complementSignal $ fromList input
         input    = [high, low, high]
+
+----------------------------------------------------------------------
+
+andSignal
+    ∷ "BTN_1" ::: Signal System Bit
+    → "BTN_2" ::: Signal System Bit
+    → "LED"   ::: Signal System Bit
+andSignal a b = (∧) <$> a <*> b
+
+test_andSignal = assertEqual expected actual
+    where
+        a        = [0, 1, 0, 1]
+        b        = [0, 0, 1, 1]
+        expected = [0, 0, 0, 1]
+        actual   = sampleN datalen $ andSignal (fromList a) (fromList b)
+        datalen  = P.foldr1 max $ P.map P.length [a, b, expected]

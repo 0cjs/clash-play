@@ -5,6 +5,7 @@ Future Work
 -----------
 
 Short-term:
+- 2022-02-07/08 to-do
 - Fix tmate issues with `C-p` being held until next char is sent
 - HaskExamples datatype promotion section: use `Nat` type variable
 
@@ -19,6 +20,46 @@ Day-by-day
 ----------
 
 Glasgow 21:00, Tokyo 06:00 next day. Weekdays are m/t/w/r/f/s/u.
+
+2022-02-07/08 (t/w) cjs sjn
+- Tests have very slow turnaround: one change to `C3_1` takes 7.5 seconds
+  to rebuild and unit test. (Most of the time is spent building.) The
+  interpreter reloads very quickly with `:r`, and we can run a test in it
+  just by typing its name, but the output is terrible if it fails and
+  running `htf_C3_1_thisModulesTests` produces a "now Show instance" error.
+- Want to test testing second example in §3.1 p.28 (P.37) (two inputs, not
+  tuple input). §6.2.1 p.85 (P.94) mentions that these functions can be
+  tested directly.
+- Leave off the above until we get the "two arguments to `topEntity` (which
+  we have renamed to `andSignal` to avoid conflict with the earlier example
+  in this file). For the moment, just use `sampleN` as before.
+- `Clash.Prelude` and `Test.Framework` both define their own `(.&.)`. We
+  resolve this for the moment by (slightly awkwardly) renaming the Clash
+  version to `(∧)`, which kinda seems more intuitive anyway, though it soon
+  doesn't look as intuitive when it's buried in an applicative: `(∧) <$> a
+  <*> b`.
+- Trying to write the test for that, I'm heading towards something that
+  looks like a truth table (yay!) but there are lots of issues with
+  overlap/conflicts between the Clash versions and Prelude versions of
+  functions such as `length`, `map` and `foldr1`. We `import qualified
+  Prelude as P` to get the prelude ones we want for the tests.
+- This is all really starting to push towards having the tests in separate
+  modules from the code under test in order to avoid having to qualify all
+  our names to avoid collisions. But maybe it wouldn't be so bad if we
+  factored out some higher level test functions (such as, "confirm this
+  truth table") into our own test library. We'll have to see as we move
+  forward.
+- After all the above, got the new test working and automatically figuring
+  out the length of the inputs and outputs (and failing in some way if the
+  lengths are not all equal).
+- Todo:
+  - Can the `(∧) <$> a <*> b` be made prettier, like `a ∧ b`?
+  - Faster test turnaround using reload in interpreter. (Problems to deal
+    with noted above.)
+  - Figure out how to test without `sampleN` and compare this to testing
+    with it.
+  - Extract common test code (or not, if due to above we feel we never need
+    `sampleN` tests again).
 
 2022-02-06/07 (m/t) cjs sjn
 - Type in sample program from §3.1, add unit test
