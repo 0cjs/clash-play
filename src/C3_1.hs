@@ -4,11 +4,17 @@
 module C3_1 (htf_thisModulesTests) where
 
 import qualified Clash.Prelude as CP
-import Clash.Prelude hiding ((.&.))
+import Clash.Prelude hiding ((.&.), (.|.))
 
 import qualified Prelude as P
-import Test.Framework
+import Test.Framework (
+    TestSuite, makeTestSuite, makeUnitTest, makeLoc, assertEqual_,
+    ) -- Just so we can see what's actually be using from Test.Framework
 
+--  Nicer names for things from Clash.Prelude that other packages often
+--  use. (Given that these aren't nearly as much of an improvement when
+--  used in an applicative context, perhaps we should be doing this for
+--  Test.Framework instead?)
 (∧), (∨) ∷ Bits a => a -> a -> a
 (∧) = (CP..&.)
 (∨) = (CP..|.)
