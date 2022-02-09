@@ -39,9 +39,10 @@ can also look at `src/C3_1.hs` as an example. The the documentation for
 - `Clash.Prelude` must be imported because we use `NoImplicitPrelude` to
   avoid importing the standard prelude.
 - `Test.Framework` provides `assertEqual` etc.
-- All definitions with prefix `test_` are considered tests by the HTF
-  preprocessor and will be instrumented so that failures can show filename,
-  line number, and expected and actual results.
+- All definitions with prefix `test_` are considered HUnit tests by the HTF
+  preprocessor; all definitions with prefix `prop_` are considered
+  QuickCheck properties. These will be instrumented so that failures can
+  show filename, line number, and expected and actual results.
 
 
 

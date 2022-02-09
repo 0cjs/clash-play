@@ -56,6 +56,7 @@ Glasgow 21:00, Tokyo 06:00 next day. Weekdays are m/t/w/r/f/s/u.
   - Can the `(∧) <$> a <*> b` be made prettier, like `a ∧ b`?
   - Faster test turnaround using reload in interpreter. (Problems to deal
     with noted above.)
+  - Get QuickCheck version of test working.
   - Figure out how to test without `sampleN` and compare this to testing
     with it.
   - Extract common test code (or not, if due to above we feel we never need

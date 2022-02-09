@@ -7,8 +7,9 @@ import qualified Clash.Prelude as CP
 import Clash.Prelude hiding ((.&.), (.|.))
 
 import qualified Prelude as P
-import Test.Framework (
-    TestSuite, makeTestSuite, makeUnitTest, makeLoc, assertEqual_,
+import Test.Framework
+    ( TestSuite, makeTestSuite, makeUnitTest, makeQuickCheckTest, makeLoc
+    , assertEqual_, qcAssertion
     ) -- Just so we can see what's actually be using from Test.Framework
 
 --  Nicer names for things from Clash.Prelude that other packages often
@@ -47,3 +48,18 @@ test_andSignal = assertEqual expected actual
         expected = [0, 0, 0, 1]
         actual   = sampleN datalen $ andSignal (fromList a) (fromList b)
         datalen  = P.foldr1 max $ P.map P.length [a, b, expected]
+
+{-  Per the example in §6.2.1 p.85 we can do QuickCheck tests directly
+    on our pure functions used in synthesis.
+
+    It seems to make sense to do this on Bools, since we can then compare
+    our result with the result returned by doing the same operation using
+    functions from the standard Haskell Prelude. But it's not clear (at
+    least to cjs) how to convert the Bools back and forth.
+
+prop_andSignal ∷ Bool → Bool → Bool
+prop_andSignal a b = expected == actual
+    where
+        expected = a && b
+        actual   = P.head $ sampleN 1 $ andSignal <$> (pure a) <*> (pure b)
+-}
