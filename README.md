@@ -44,12 +44,26 @@ can also look at `src/C3_1.hs` as an example. The the documentation for
   QuickCheck properties. These will be instrumented so that failures can
   show filename, line number, and expected and actual results.
 
+### Building Verilog/VDHL
+
+- The `:verilog` command in `clashi` will generate Verilog output under a
+  `verilog/` directory.
+- See the `2022-01-24/25` notes in [Meets] for more information on what's
+  generated.
+- The [clash-shake] package provides Shake rules for building Clash
+  programs and synthesizing FPGA configuration for several different vendor
+  toolchains. The GitHub [clash-pong] project provides an example of its
+  use.
 
 
 <!-------------------------------------------------------------------->
-[retro]: https://unsafeperform.io/retroclash/
-[clash]: https://clash-lang.org/
+[Meets]: ./Meets.md
+
 [book-code]: https://github.com/gergoerdi/retroclash-book-code
+[clash-pong]: https://github.com/gergoerdi/clash-pong/
+[clash-shake]: https://hackage.haskell.org/package/clash-shake
+[clash]: https://clash-lang.org/
+[retro]: https://unsafeperform.io/retroclash/
 
 [HTF]: https://hackage.haskell.org/package/HTF
 [HTF tutorial]: https://hackage.haskell.org/package/HTF-0.14.0.6/docs/Test-Framework-Tutorial.html
