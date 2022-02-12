@@ -56,10 +56,10 @@ test_andSignal = assertEqual expected actual
     our result with the result returned by doing the same operation using
     functions from the standard Haskell Prelude. But it's not clear (at
     least to cjs) how to convert the Bools back and forth.
-
+-}
 prop_andSignal ∷ Bool → Bool → Bool
 prop_andSignal a b = expected == actual
     where
         expected = a && b
-        actual   = P.head $ sampleN 1 $ andSignal <$> (pure a) <*> (pure b)
--}
+        actual   = bitToBool $ P.head $ sampleN 1 $ andSignal
+            (fromList [boolToBit a]) (fromList [boolToBit b])
