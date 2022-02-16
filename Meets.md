@@ -21,12 +21,21 @@ Day-by-day
 
 Glasgow 21:00, Tokyo 06:00 next day. Weekdays are m/t/w/r/f/s/u.
 
+2022-02-15/16 (w/r) cjs
+- `prop_andSignal` was fixed by Stuart using `boolToBit` and `bitToBool`. A
+  property failure output is none too clear: changing the property from `a
+  && b` to `a` produces the error `Replay argument: "Just (SMGen
+  8136674713069414597 3311635235059918567,1)"` Also, running the test
+  directly in the interpreter produces "No instance for (Show (Bool -> Bool
+  -> Bool))".
+
 2022-02-07/08 (t/w) cjs sjn
 - Tests have very slow turnaround: one change to `C3_1` takes 7.5 seconds
   to rebuild and unit test. (Most of the time is spent building.) The
   interpreter reloads very quickly with `:r`, and we can run a test in it
   just by typing its name, but the output is terrible if it fails and
-  running `htf_C3_1_thisModulesTests` produces a "now Show instance" error.
+  running `htf_C3_1_thisModulesTests` produces a "no instance for (Show
+  Testsuite)" error.
 - Want to test testing second example in §3.1 p.28 (P.37) (two inputs, not
   tuple input). §6.2.1 p.85 (P.94) mentions that these functions can be
   tested directly.
