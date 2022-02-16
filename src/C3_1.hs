@@ -54,8 +54,8 @@ test_andSignal = assertEqual expected actual
 
     It seems to make sense to do this on Bools, since we can then compare
     our result with the result returned by doing the same operation using
-    functions from the standard Haskell Prelude. But it's not clear (at
-    least to cjs) how to convert the Bools back and forth.
+    functions from the standard Haskell Prelude. But we should look at
+    how and whether we might do this on the actual Clash types.
 -}
 prop_andSignal ∷ Bool → Bool → Bool
 prop_andSignal a b = expected == actual
