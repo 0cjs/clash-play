@@ -39,7 +39,7 @@ Chips and Boards
 - 5V tolerant I/O, 3.3V output capability.
 
 [Digikey prices][dk9572] $6-10; old PLCC-48 also available at ~$3 qty.100.
-Seeed had a [dev board][seed-XC9572XL] (Digi-Key [1597-1318-ND]) but that
+Seeed had a [dev board][seeed-XC9572XL] (Digi-Key [1597-1318-ND]) but that
 seems to be out of production. There seems to be a standard "learning
 board" with five LEDs, 2× 20 pin headers, barrel power and JTAG turned up
 by a search for "XC9572XL" on amazon.co.jp and AliExpress, giving e.g.
@@ -47,7 +47,7 @@ by a search for "XC9572XL" on amazon.co.jp and AliExpress, giving e.g.
 
 The [DLC10-clone] programmer appears to program this.
 
-### Seed Papilio DUO-512KB
+### Seeed Papilio DUO-512KB
 
 - [Development Board][pap-db] $70. [Classic Computing Shield][pap-sh] $15
   (VGA, PS/2, serial, Micro-SD, etc.).
@@ -75,7 +75,7 @@ Other
 [B09FX9ZPLF]: https://www.amazon.co.jp/dp/B09FX9ZPLF
 [XC9572XL]: https://www.xilinx.com/support/documentation/data_sheets/ds057.pdf
 [dk9572]: https://www.digikey.com/en/products/filter/embedded-cplds-complex-programmable-logic-devices/695?s=N4IgTCBcDaIBoGECcBWA7GOAZEBdAvkA
-[seed-XC9572XL]: https://www.seeedstudio.com/XC9572XL-CPLD-development-board-v1b-p-799.html
+[seeed-XC9572XL]: https://www.seeedstudio.com/XC9572XL-CPLD-development-board-v1b-p-799.html
 
 [FT2232H]: http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT2232H.pdf
 [Spartan 6 LX9]: https://www.xilinx.com/support/documentation/data_sheets/ds160.pdf
