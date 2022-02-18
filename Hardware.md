@@ -5,11 +5,11 @@ Inventory
 ---------
 
 cjs:
-- [33041288904][] XC9572XL CPLD learning board (on order)
+- [4000193528943][] XC9572XL CPLD learning board (on order)
 - [DLC10-clone] programmer (on order)
 
 sjn:
-- [33041288904][] XC9572XL CPLD learning board (on order)
+- [4000193528943][] XC9572XL CPLD learning board (on order)
 
 
 Programmers
@@ -43,7 +43,9 @@ Seeed had a [dev board][seeed-XC9572XL] (Digi-Key [1597-1318-ND]) but that
 seems to be out of production. There seems to be a standard "learning
 board" with five LEDs, 2× 20 pin headers, barrel power and JTAG turned up
 by a search for "XC9572XL" on amazon.co.jp and AliExpress, giving e.g.
-[B09FX9ZPLF][] (¥1,879), [33041288904][] (¥1,124).
+[B09FX9ZPLF][] (¥1,879), [4000193528943] ¥733 + +385 shipping. (Be careful,
+some like [33041288904][] (¥1,124 free shipping) have either an incorrect
+title or incorrect description below.)
 
 The [DLC10-clone] programmer appears to program this.
 
@@ -72,6 +74,7 @@ Other
 
 [1597-1318-ND]: https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/102990001/5488214?s=N4IgTCBcDaIBoGECcBWA7GOAZEBdAvkA
 [33041288904]: https://www.aliexpress.com/item/33041288904.html
+[4000193528943]: https://www.aliexpress.com/item/4000193528943.html
 [B09FX9ZPLF]: https://www.amazon.co.jp/dp/B09FX9ZPLF
 [XC9572XL]: https://www.xilinx.com/support/documentation/data_sheets/ds057.pdf
 [dk9572]: https://www.digikey.com/en/products/filter/embedded-cplds-complex-programmable-logic-devices/695?s=N4IgTCBcDaIBoGECcBWA7GOAZEBdAvkA
