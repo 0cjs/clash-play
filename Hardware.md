@@ -55,6 +55,16 @@ The [DLC10-clone] programmer appears to program this.
   8M flash, ATmega32U4.
 
 
+Other
+-----
+
+### Level Conversion
+
+- TI [SN74LVC8T245] 8-Bit Dual-Supply Bus Transceiver With Configurable
+  Voltage Translation and 3-State Outputs. All 8 bus lines switch direction
+  with one `DIR` input; `O̅E̅` tri-states outputs..
+
+
 
 <!-------------------------------------------------------------------->
 [DLC10]: https://www.xilinx.com/products/boards-and-kits/hw-usb-ii-g.html
@@ -71,3 +81,5 @@ The [DLC10-clone] programmer appears to program this.
 [Spartan 6 LX9]: https://www.xilinx.com/support/documentation/data_sheets/ds160.pdf
 [pap-db]: https://www.seeedstudio.com/Papilio-DUO-512KB-p-2328.html
 [pap-sh]: https://www.seeedstudio.com/Classic-Computing-Shield-V1-01.html
+
+[SN74LVC8T245]: https://www.ti.com/lit/ds/sces584b/sces584b.pdf
