@@ -63,3 +63,28 @@ prop_andSignal a b = expected == actual
         expected = a && b
         actual   = bitToBool $ P.head $ sampleN 1 $ andSignal
             (fromList [boolToBit a]) (fromList [boolToBit b])
+
+----------------------------------------------------------------------
+
+bothEitherSignal
+    ∷ "BTN_1" :::
+      ( "1" ::: Signal System Bit
+      , "2" ::: Signal System Bit
+      )
+    → "LED" :::
+      ( "1" ::: Signal System Bit
+      , "2" ::: Signal System Bit
+      )
+bothEitherSignal (btn1, btn2) = (both, either)
+    where
+        both    = (∧) <$> btn1 <*> btn2
+        either  = (∨) <$> btn1 <*> btn2
+
+test_bothEitherSignal = assertEqual expected actual
+    where
+        a        = [0, 1, 0, 1]
+        b        = [0, 0, 1, 1]
+        expected = [(0,0), (0,1), (0,1), (1,1)]
+        actual   = sampleN datalen $ bothEitherSignal (fromList a, fromList b)
+
+        datalen  = P.foldr1 max $ P.map P.length [a, b, expected]

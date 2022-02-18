@@ -21,6 +21,14 @@ Day-by-day
 
 Glasgow 21:00, Tokyo 06:00 next day. Weekdays are m/t/w/r/f/s/u.
 
+2022-02-17/18 (t/f) cjs sjn
+- Tried the next example on page 28 (we're calling it `bothEitherSignal`)
+  and couldn't get the types to match up in the unit test. The problem is
+  that we're not dealing properly with pairs of signals going in and out.
+- TODO: We should split this into two parts: first a pair of signals going
+  in and a single signal coming out, and get that working, then a pair of
+  signals coming out.
+
 2022-02-15/16 (w/r) cjs
 - `prop_andSignal` was fixed by Stuart using `boolToBit` and `bitToBool`. A
   property failure output is none too clear: changing the property from `a
