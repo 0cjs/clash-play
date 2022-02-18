@@ -1,11 +1,42 @@
 Hardware and Device Notes
 =========================
 
+Inventory
+---------
+
+cjs:
+- [33041288904][] XC9572XL CPLD learning board (on order)
+- [DLC10-clone] programmer (on order)
+
+sjn:
+- [33041288904][] XC9572XL CPLD learning board (on order)
+
+
+Programmers
+-----------
+
+### DLC10
+
+The Xilinx ["Platform Cable USB II" (model DLC10)][DLC10] part number
+HW-USB-II-G ($270) seems to be the second-generation programmer (after the
+DLC9) that works with all Xilinx devices, so long as you have the correct
+adapter and flying cable.
+
+[This AliExpress vesion][DLC10-clone] seems to be a cheap clone (¥2742 +
+¥725 shipping) that includes an interface board and many flying leads. The
+description has a table indicating the improvements over the DLC9 non-II
+version (it can program the fuses as well.)
+
+
+Chips and Boards
+----------------
+
 ### Xilinx XC9572XL High Performance CPLD
 
 - [Datasheet][XC9572XL]. 72 macrocells, 1600 gates.
+- ISE toolchain.
 - I/O: 34 (44-pin PLCC, VQFP); 52 (64-pin VQFP); 72 (100-pin TQFP).
-- ISE toolchain. 5V tolerant I/O, 3.3V output capability.
+- 5V tolerant I/O, 3.3V output capability.
 
 [Digikey prices][dk9572] $6-10; old PLCC-48 also available at ~$3 qty.100.
 Seeed had a [dev board][seed-XC9572XL] (Digi-Key [1597-1318-ND]) but that
@@ -14,8 +45,7 @@ board" with five LEDs, 2× 20 pin headers, barrel power and JTAG turned up
 by a search for "XC9572XL" on amazon.co.jp and AliExpress, giving e.g.
 [B09FX9ZPLF][] (¥1,879), [33041288904][] (¥1,124).
 
-The [DLC10] programmer appears to program this and all other Xylinx stuff.
-(Improvement over DLC9 is that it can program the fuses as well.)
+The [DLC10-clone] programmer appears to program this.
 
 ### Seed Papilio DUO-512KB
 
@@ -27,7 +57,8 @@ The [DLC10] programmer appears to program this and all other Xylinx stuff.
 
 
 <!-------------------------------------------------------------------->
-[DLC10]: https://www.aliexpress.com/item/32691266814.html
+[DLC10]: https://www.xilinx.com/products/boards-and-kits/hw-usb-ii-g.html
+[DLC10-clone]: https://www.aliexpress.com/item/32691266814.html
 
 [1597-1318-ND]: https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/102990001/5488214?s=N4IgTCBcDaIBoGECcBWA7GOAZEBdAvkA
 [33041288904]: https://www.aliexpress.com/item/33041288904.html
