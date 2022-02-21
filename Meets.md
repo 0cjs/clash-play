@@ -29,6 +29,8 @@ Glasgow 21:00, Tokyo 06:00 next day. Weekdays are m/t/w/r/f/s/u.
   separately. sjn thinks that as we move on we'll not be using Bit outputs,
   and so we don't need to worry about zipping and unzipping sets of bits
   for more convenient reading.
+- Typed in example from §3.3 p.30 and after much mucking about with types
+  got a basic test working for it.
 
 2022-02-17/18 (t/f) cjs sjn
 - Tried the next example on page 28 (we're calling it `bothEitherSignal`)

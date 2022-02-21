@@ -111,3 +111,20 @@ test_bothEitherSignal =
                             [a, b, expectedBoth, expectedEither]
         sampledBoth     = sampleN datalen $ both
         sampledEither   = sampleN datalen $ either
+
+----------------------------------------------------------------------
+-- §3.3 p.30 P.39
+
+revSwitches
+    ∷ "SWITCHES" ::: Signal System (Vec 8 Bit)
+    → "LEDS"     ::: Signal System (Vec 8 Bit)
+revSwitches switches = reverse <$> switches
+
+test_revSwitches ∷ IO ()
+test_revSwitches =
+    assertEqual expected actual
+    where
+        input       = 0:>1:>0:>0:>1:>1:>1:>0:>Nil ∷ Vec 8 Bit
+        expected    = 0:>1:>1:>1:>0:>0:>1:>0:>Nil ∷ Vec 8 Bit
+        actual = P.head $ sampleN 1 $ revSwitches (fromList [input])
+        datalen = P.length expected
