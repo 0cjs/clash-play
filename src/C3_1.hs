@@ -66,6 +66,24 @@ prop_andSignal a b = expected == actual
 
 ----------------------------------------------------------------------
 
+andPairedSignal
+    ∷ "BTN" :::
+      ( "1" ::: Signal System Bit
+      , "2" ::: Signal System Bit
+      )
+    → "LED"   ::: Signal System Bit
+andPairedSignal (a,b) = (∧) <$> a <*> b
+
+test_andPairedSignal = assertEqual expected actual
+    where
+        a        = [0, 1, 0, 1]
+        b        = [0, 0, 1, 1]
+        expected = [0, 0, 0, 1]
+        actual   = sampleN datalen $ andPairedSignal (fromList a, fromList b)
+        datalen  = P.foldr1 max $ P.map P.length [a, b, expected]
+
+----------------------------------------------------------------------
+
 bothEitherSignal
     ∷ "BTN_1" :::
       ( "1" ::: Signal System Bit
@@ -80,11 +98,16 @@ bothEitherSignal (btn1, btn2) = (both, either)
         both    = (∧) <$> btn1 <*> btn2
         either  = (∨) <$> btn1 <*> btn2
 
-test_bothEitherSignal = assertEqual expected actual
+test_bothEitherSignal ∷ IO ()
+test_bothEitherSignal =
+    assertEqual (expectedBoth, expectedEither) (sampledBoth, sampledEither)
     where
-        a        = [0, 1, 0, 1]
-        b        = [0, 0, 1, 1]
-        expected = [(0,0), (0,1), (0,1), (1,1)]
-        actual   = sampleN datalen $ bothEitherSignal (fromList a, fromList b)
-
-        datalen  = P.foldr1 max $ P.map P.length [a, b, expected]
+        a               = [0, 1, 0, 1]
+        b               = [0, 0, 1, 1]
+        expectedBoth    = [0, 0, 0, 1]
+        expectedEither  = [0, 1, 1, 1]
+        (both, either)  = bothEitherSignal (fromList a, fromList b)
+        datalen         = P.foldr1 max $ P.map P.length
+                            [a, b, expectedBoth, expectedEither]
+        sampledBoth     = sampleN datalen $ both
+        sampledEither   = sampleN datalen $ either
