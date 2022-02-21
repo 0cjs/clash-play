@@ -13,6 +13,8 @@ Do not expect the code in this repo to work or do anything useful.
 Handy notes:
 - `Test` builds and (soon) runs a few tests
 - `i` runs the interpreter; pass in filenames to load on the command line
+- `reference/` contains clones of various repos whose code one might want
+  to rexamine. (These are cloned by `Test`.)
 
 ### Adding New Files and Tests
 
