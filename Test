@@ -12,9 +12,15 @@ mkdir -p reference/
     rcbc=https://github.com/gergoerdi/retroclash-book-code
     git clone -o upstream  "$rcbc" reference/book-code
 }
-[[ -d reference/clash-prelude ]] || {
-    repo=https://github.com/clash-lang/clash-prelude
-    git clone -o upstream  "$repo" reference/clash-prelude
+[[ -d reference/clash-compiler ]] || {
+    repo=https://github.com/clash-lang/clash-compiler
+    git clone -o upstream  "$repo" reference/clash-compiler
+}
+[[ -h reference/clash-prelude ]] || {
+    #   The separate repo <https://github.com/clash-lang/clash-prelude>
+    #   is archived; the current source is in clash-compiler/clash-prelude.
+    rm -rf reference/clash-prelude
+    ln -s clash-compiler/clash-prelude reference/clash-prelude
 }
 
 stack build --test
