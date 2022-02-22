@@ -21,7 +21,20 @@ Day-by-day
 
 Glasgow 21:00, Tokyo 06:00 next day. Weekdays are m/t/w/r/f/s/u.
 
-2022-02-21 (m) cjs sjn
+2022-02-22 (t) cjs sjn croys
+- Had a look at some QuickCheck stuff and better understood it.
+- p.31/P.40: Worked out how the `unbundleVec` function works:
+  - `unbundleVec bus = map (\i -> (!!i) <$> bus) indices`
+- Looked at the `instance Bundle (Vec n a)` to understand `class Bundle`.
+  Insight: type families extend classes to let you have not just new
+  functions defined for each instance, but also new types defined for each
+  instance. In this case, we need to define what a bundle is and what its
+  unbundled version is, though we don't quite see how the versions in
+  `unbundleVec` on p.33 (bundled: `Signal dom (Vec n a)`;
+  unbundled: `Vec n (Signal dom a0`) match up with the instance
+  declaration: `type Unbundled t (Vec n a) = Vec n (Signal t a)`
+
+2022-02-21 (m) cjs sjn croys
 - Did a version of andSignal taking a pair instead of two parameters, and
   that worked easily enough just by passing `(fromList a, fromList b)` as
   the argument. So that's not where we were screwing up yesterday.
