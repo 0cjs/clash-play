@@ -21,7 +21,89 @@ Day-by-day
 
 Glasgow 21:00, Tokyo 06:00 next day. Weekdays are m/t/w/r/f/s/u.
 
-2022-02-22 (t) cjs sjn croys
+#### 2022-02-24 (r) cjs sjn
+
+Looking again at syntax for [12.9.4.1 Associated Instances][12.9.4.1] and
+[12.9.4.2 Associated type synonym defaults][12.9.4.2]. The core of the
+`Bundle` class is:
+
+    class Bundle α where
+      type Υ δ α    -- A type function Υ that, given δ and α, produces
+                    -- a new type to be used below.
+
+      bundle    ∷ Υ δ α      → Signal δ α
+      unbundle  ∷ Signal δ α → Υ δ α
+
+      -- Actually, the real associated type declaration looks as if it adds
+      -- a functional dependency (on a separate line); we elide this below
+      -- but see the end for more.
+      type Υ (δ ∷ Domain) α = res | res -> δ α
+
+However, the actual implementation (in `Clash.Signal.Bundle`) includes some
+default definitions. For whatever reason, we explicitly say `default` for
+the function default types and instantiations, but not for the default
+instantiation of the `Υ δ α` type.
+
+    class Bundle α where
+      type Υ δ α = Signal δ α   -- default implementation of type function Υ
+
+      bundle    ∷ Υ δ α      → Signal δ α
+      unbundle  ∷ Signal δ α → Υ δ α
+
+      default   bundle ∷ (Signal δ α ~ Υ δ α) => Υ δ α      → Signal δ α
+      bundle s = s
+
+      default unbundle ∷ (Υ δ α ~ Signal δ α) => Signal δ α → Υ δ α
+      unbundle s = s
+
+This allows us to easily use the default implementation for things where
+the "unbundled" version is the same as the bundled version, e.g.:
+
+    instance Bundle ()
+    instance Bundle Bool
+    instance Bundle Int
+    instance Bundle (Maybe α)
+
+When the unbundled and bundled types are different we must explicitly
+define the unbundled type (implicitly defining the function types as well,
+if we don't explicitly give them) and the function bodies. Here we must
+subtitute `Vec ι ε` for α as used in `Υ δ α`, and on the right hand side
+
+    instance KnownNat n => Bundle (Vec ι ε) where
+
+      -- More complex implementation of Υ:
+      -- 1. We pattern match to deconstruct the second parameter.
+      -- 2. Our result type is not so exactly parallel to the input type.
+      -- But still applying it works the same way: anywhere we see `Υ δ α`
+      -- we first substitute α and then substitute the RHS for the LHS.
+
+      type Υ δ (Vec ι ε) = Vec ι (Signal δ ε)
+
+      --       ∷ Υ δ α              → Signal δ α         -- class definition
+      --       ∷ Υ δ (Vec ι ε)      → Signal δ (Vec ι ε) -- subst. α definition
+      bundle   ∷ Vec ι (Signal δ ε) → Signal δ (Vec ι ε) -- subst. Υ definition
+      bundle   = traverse# id
+
+      -- unbundle is same as above, with arg and result swapped
+      unbundle = sequenceA . fmap lazyV
+
+The one bit we didn't cover is the actual declaration of the associated
+type synonym:
+
+    type Unbundled (dom :: Domain) a = res | res -> dom a
+
+We think that this is a functional dependency, but need to go look up how
+those work to understand it.
+
+Todo next session:
+- Review the above, make sure it's correct, and that we still understand it.
+- Investigate the functional dependency `res | res -> dom a`.
+
+[12.9.4.1]: https://downloads.haskell.org/~ghc/8.10.4/docs/html/users_guide/glasgow_exts.html#associated-instances
+[12.9.4.2]: https://downloads.haskell.org/~ghc/8.10.4/docs/html/users_guide/glasgow_exts.html#associated-type-synonym-defaults
+
+#### 2022-02-22 (t) cjs sjn croys
+
 - Had a look at some QuickCheck stuff and better understood it.
 - p.31/P.40: Worked out how the `unbundleVec` function works:
   - `unbundleVec bus = map (\i -> (!!i) <$> bus) indices`
