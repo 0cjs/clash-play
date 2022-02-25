@@ -24,36 +24,51 @@ Glasgow 21:00, Tokyo 06:00 next day. Weekdays are m/t/w/r/f/s/u.
 #### 2022-02-24 (r) cjs sjn
 
 Looking again at syntax for [12.9.4.1 Associated Instances][12.9.4.1] and
-[12.9.4.2 Associated type synonym defaults][12.9.4.2]. The core of the
-`Bundle` class is:
+[12.9.4.2 Associated type synonym defaults][12.9.4.2].
+
+Below we use the following variables.
+- `τ` (_tau_): the clock domain parameter for `Signal`s. Remember via the
+  Greek word for "domain" τομέα or the physics τ for "time."
+- `α` (_alpha_): The type of the bundle holding the thing or things we can
+  unbundle.
+- `Υ` (Upsilon): a type constructor taking two arguments. This is
+  upper-case to distinguish it from type variables which take no arguments.
+  This function, when applied to its parameters, gives us the unbundled
+  type.
+- `Vec ι ε` (vector of _iota_ length having elements of type _epsilon_).
+  - ι as in the APL ι, [C++ iota()] or [Go iota]: "The _integer_ function
+    denoted by ι produces a vector of the first _N_ integers."
+  - ε being the source of set notation's ∈, "is an element of."
+
+The core of the `Bundle` class is:
 
     class Bundle α where
-      type Υ δ α    -- A type function Υ that, given δ and α, produces
+      type Υ τ α    -- A type function Υ that, given τ and α, produces
                     -- a new type to be used below.
 
-      bundle    ∷ Υ δ α      → Signal δ α
-      unbundle  ∷ Signal δ α → Υ δ α
+      bundle    ∷ Υ τ α      → Signal τ α
+      unbundle  ∷ Signal τ α → Υ τ α
 
       -- Actually, the real associated type declaration looks as if it adds
       -- a functional dependency (on a separate line); we elide this below
       -- but see the end for more.
-      type Υ (δ ∷ Domain) α = res | res -> δ α
+      type Υ (τ ∷ Domain) α = res | res -> τ α
 
 However, the actual implementation (in `Clash.Signal.Bundle`) includes some
 default definitions. For whatever reason, we explicitly say `default` for
 the function default types and instantiations, but not for the default
-instantiation of the `Υ δ α` type.
+instantiation of the `Υ τ α` type.
 
     class Bundle α where
-      type Υ δ α = Signal δ α   -- default implementation of type function Υ
+      type Υ τ α = Signal τ α   -- default implementation of type function Υ
 
-      bundle    ∷ Υ δ α      → Signal δ α
-      unbundle  ∷ Signal δ α → Υ δ α
+      bundle    ∷ Υ τ α      → Signal τ α
+      unbundle  ∷ Signal τ α → Υ τ α
 
-      default   bundle ∷ (Signal δ α ~ Υ δ α) => Υ δ α      → Signal δ α
+      default   bundle ∷ (Signal τ α ~ Υ τ α) => Υ τ α      → Signal τ α
       bundle s = s
 
-      default unbundle ∷ (Υ δ α ~ Signal δ α) => Signal δ α → Υ δ α
+      default unbundle ∷ (Υ τ α ~ Signal τ α) => Signal τ α → Υ τ α
       unbundle s = s
 
 This allows us to easily use the default implementation for things where
@@ -67,21 +82,21 @@ the "unbundled" version is the same as the bundled version, e.g.:
 When the unbundled and bundled types are different we must explicitly
 define the unbundled type (implicitly defining the function types as well,
 if we don't explicitly give them) and the function bodies. Here we must
-subtitute `Vec ι ε` for α as used in `Υ δ α`, and on the right hand side
+subtitute `Vec ι ε` for α as used in `Υ τ α`, and on the right hand side.
 
     instance KnownNat n => Bundle (Vec ι ε) where
 
       -- More complex implementation of Υ:
       -- 1. We pattern match to deconstruct the second parameter.
       -- 2. Our result type is not so exactly parallel to the input type.
-      -- But still applying it works the same way: anywhere we see `Υ δ α`
+      -- But still applying it works the same way: anywhere we see `Υ τ α`
       -- we first substitute α and then substitute the RHS for the LHS.
 
-      type Υ δ (Vec ι ε) = Vec ι (Signal δ ε)
+      type Υ τ (Vec ι ε) = Vec ι (Signal τ ε)
 
-      --       ∷ Υ δ α              → Signal δ α         -- class definition
-      --       ∷ Υ δ (Vec ι ε)      → Signal δ (Vec ι ε) -- subst. α definition
-      bundle   ∷ Vec ι (Signal δ ε) → Signal δ (Vec ι ε) -- subst. Υ definition
+      --       ∷ Υ τ α              → Signal τ α         -- class definition
+      --       ∷ Υ τ (Vec ι ε)      → Signal τ (Vec ι ε) -- subst. α definition
+      bundle   ∷ Vec ι (Signal τ ε) → Signal τ (Vec ι ε) -- subst. Υ definition
       bundle   = traverse# id
 
       -- unbundle is same as above, with arg and result swapped
@@ -97,10 +112,13 @@ those work to understand it.
 
 Todo next session:
 - Review the above, make sure it's correct, and that we still understand it.
-- Investigate the functional dependency `res | res -> dom a`.
+- Investigate the [functional dependency][6.8.7] `res | res -> dom a`.
 
+[C++ iota()]: https://sean-parent.stlab.cc/2019/01/04/iota.html
+[Go iota]: https://go.dev/ref/spec#Iota
 [12.9.4.1]: https://downloads.haskell.org/~ghc/8.10.4/docs/html/users_guide/glasgow_exts.html#associated-instances
 [12.9.4.2]: https://downloads.haskell.org/~ghc/8.10.4/docs/html/users_guide/glasgow_exts.html#associated-type-synonym-defaults
+[6.8.7]: https://downloads.haskell.org/ghc/latest/docs/html/users_guide/exts/functional_dependencies.html
 
 #### 2022-02-22 (t) cjs sjn croys
 
