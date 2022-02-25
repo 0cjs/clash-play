@@ -21,6 +21,43 @@ Day-by-day
 
 Glasgow 21:00, Tokyo 06:00 next day. Weekdays are m/t/w/r/f/s/u.
 
+#### 2022-02-25 (f) cjs sjn
+
+- Moved `HaskExamples` to `Hask.Examples`; we're starting a new subdir for
+  modules that are not Clash stuff but just about learning Haskell itself.
+  Our new code for stuff below is in `Hask.FDs`. (The `hello` executable
+  builds everything under `src/` so we don't need to worry about adding
+  anything more to have these "tested" by the compiler.)
+- There's a good explanation/tutorial in GHC manual §[6.8.7.2].
+- Read `| a b → c` as "_a_ and _b_ determine a unique c"; i.e., for any
+  given _a_ and _b_ there may be only one _c._
+- Sample code in `src/HaskExamples.hs`.
+- Maybe since `TypeApplications` [6.4.14] introduced in v8.0.1 FDs (since
+  v6.8.1) no longer let us write code that we couldn't write before.
+- But we still have to turn on `AllowAmbiguousTypes` [6.11.2] (v7.8.1) to
+  defer the checking to call sites, otherwise it points out that there's
+  ambiguity in the class definition.
+- [so 4950] gives a good explanation of what's going on with the ambiguity.
+  In short, given a constraint `Foo a => ...` (implicit in instance
+  definitions), we are telling the compiler that it must check that `a` is
+  a member of class `Foo` for any use of that function, and if no value of
+  type `a` appears, there's no way to do that check. With
+  `AllowAmbiguousTypes` off, the compiler can tell us at definition time
+  that it's impossible (without `TypeApplications`) to write a call to that
+  function that isn't ambiguous.
+  - From a comment: "An ambiguous type is one which has a type variable in
+    its context which is not mentioned in the body (that to the right of
+    =>) of the type. So RealFloat a => .. is ambiguous when .. doesn't
+    mention a. Ambiguous types are generally a programmer error, and before
+    TypeApplications they were entirely useless...."
+- Stopping now; cjs will read up on this stuff further.
+
+[6.8.7]: https://downloads.haskell.org/ghc/latest/docs/html/users_guide/exts/functional_dependencies.html
+[6.8.7.2]: https://downloads.haskell.org/ghc/latest/docs/html/users_guide/exts/functional_dependencies.html#background-on-functional-dependencies
+[6.4.14]: https://downloads.haskell.org/ghc/latest/docs/html/users_guide/exts/type_applications.html
+[6.11.2]: https://downloads.haskell.org/ghc/latest/docs/html/users_guide/exts/ambiguous_types.html
+[so 4950]: https://stackoverflow.com/a/45664950/107294
+
 #### 2022-02-24 (r) cjs sjn
 
 Looking again at syntax for [12.9.4.1 Associated Instances][12.9.4.1] and

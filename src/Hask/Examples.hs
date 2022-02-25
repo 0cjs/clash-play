@@ -3,7 +3,7 @@
 -- The following allow us to load this in `stack exec ghci`:
 {-# LANGUAGE GADTs, KindSignatures #-}
 
-module HaskExamples where
+module Hask.Examples where
 
 import Prelude
 import Data.Kind (Type)             -- also Clash.Prelude (Type)
