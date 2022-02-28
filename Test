@@ -4,6 +4,8 @@ set -eu -o pipefail
 basedir=$(cd "$(dirname "$0")" && pwd -P)
 cd "$basedir"
 
+####################################################################
+
 mkdir -p reference/
 #   These are just for developer reference; we don't use this code in
 #   our repo. Thus we don't use a submodule because we don't want or
@@ -23,4 +25,7 @@ mkdir -p reference/
     ln -s clash-compiler/clash-prelude reference/clash-prelude
 }
 
+####################################################################
+
+[[ ${#@} -gt 0 && $1 = -c ]] && { shift; stack clean; }
 stack build --test
