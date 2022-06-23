@@ -264,7 +264,7 @@ Todo next session:
     - It's not clear what's going on with this and it should probably be
       investigated at some point, though possibly this will be fixed by
       reworking how we deal with `main` functions (see below).
-  - Document in [README](./README.md) how to set up new files and tests.
+  - Document in [README](../README.md) how to set up new files and tests.
 - The `main` conflicts above and other issues related to `main` are
   probably best fixed by removing all `main` functions from files under
   `src/` so that they're not automatically all compiled together by the
