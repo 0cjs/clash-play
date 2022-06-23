@@ -5,11 +5,11 @@ Inventory
 ---------
 
 cjs:
-- [4000193528943][] XC9572XL CPLD learning board (on order)
-- [DLC10-clone] programmer (on order)
+- [4000193528943][] XC9572XL CPLD learning board
+- [DLC10-clone] programmer
 
 sjn:
-- [4000193528943][] XC9572XL CPLD learning board (on order)
+- [4000193528943][] XC9572XL CPLD learning board
 
 
 Programmers
