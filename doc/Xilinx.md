@@ -37,7 +37,7 @@ The first stage of the install is to confirm that Xilinx owns all your data,
 your computer, you personally, all your relatives, etc. After several stages of
 this you will be asked to select the products to install; select __ISE Design
 Suite Logic Edition.__ On the next screen, ensure that __Acquire or Manage a
-Licsense Key__ is checked (and you probably want to deselect WebTalk).
+License Key__ is checked (and you probably want to deselect WebTalk).
 
 XXX Do we need __Install Cable Drivers?__
 
@@ -58,7 +58,7 @@ screen.
 - __ISE Design Suite Logic Edition.__ This installation contains everything you
   need to do a complete logic design for any size device. It includes ISE
   Design Tools (all devices supported), PlanAhead, ChipScope Pro, the Embedded
-  Development Kit (EDK), ISim and Connectivity & DSP IP. 
+  Development Kit (EDK), ISim and Connectivity & DSP IP.
 - __ISE Design Suite Embedded Edition.__
 - __ISE Design Suite DSP Edition.__ This installation contains everything you
   need to do a complete embedded design. It includes ISE Design Suite Logic
