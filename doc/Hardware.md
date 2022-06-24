@@ -1,6 +1,13 @@
 Hardware and Device Notes
 =========================
 
+Contents:
+- Inventory
+- Programmers
+- Chips and Boards
+- Other (level conversion, etc.)
+- Homebrew
+
 Inventory
 ---------
 
@@ -40,14 +47,35 @@ Chips and Boards
 
 [Digikey prices][dk9572] $6-10; old PLCC-48 also available at ~$3 qty.100.
 Seeed had a [dev board][seeed-XC9572XL] (Digi-Key [1597-1318-ND]) but that
-seems to be out of production. 
+seems to be out of production.
 
 There seems to be a standard "learning board" with five LEDs, 2× 20 pin
-headers, barrel power and JTAG turned up by a search for "XC9572XL" on
-amazon.co.jp and AliExpress, giving e.g. [B09FX9ZPLF][] (¥1,879),
-[4000193528943] ¥733 + +385 shipping. (Be careful, some like
-[33041288904][] (¥1,124 free shipping) have either an incorrect title or
-incorrect description below.)
+headers, a 3.3V regulator and JTAG; find it with a search for "XC9572XL".
+Sources include (+¥ is shipping):
+- amazon.co.jp: [B09FX9ZPLF] ¥1,879.
+- aliexpress.com: [4000193528943] ¥733 +¥385;
+  [33041288904] ¥1,124 +¥0 with incorrect description.
+
+Board configuration/wiring:
+- 44-pin VQFP device (34 user I/O pins)
+- Barrel connector: center-positive into power switch then single 3.3V
+  regulator. 2nd regulator missing; its output pad also 3.3V.
+  - __WARNING: pins labeled 1.8V have 3.3V output.__
+- Pin 1 connected to 50 MHz crystal oscillator and `CLK` pin.
+- 2× 20-pin headers (`•` marks gap in numbering; `P` ommited from pin names):
+  - `3V3 3V3† CLK • 2 3 • 5 6 7 8 • 12 13 14 • 16 • 18 19 20 21 22 23 • GND`
+  - `3V3 3V3† • 27 28 29 30 31 32 33ᵗ 34ᵗ • 36 37 38 39 40 44 42 43ᶜ 44ᶜ • GND`
+  - Global control pins and pin notes:
+    - † labeled 1.8V
+    - ᶜ clock: `43`:GCK1 `44`:GCK2 `1`:GCK3
+    - ᵗ tristate: `36`:GTS1 `34`:GTS2
+    - ʳ reset: `33`:GSR
+- LEDs: D1:Vcc;  D2:`31`  D3:`34`  D4:`33`  D5:`32`  (linked by the 4 jumpers)
+- Non-I/O chip pins (none on I/O headers except power):
+    - GND: `4` `17` `25`
+    - Vccint (3.3V): `15` `35`
+    - Vccio (2.5/3.3V): `26`
+    - JTAG: `11`:TCK `9`:TDI `24`:TDO `10`:TMS
 
 The [DLC10-clone] programmer appears to program this.
 
