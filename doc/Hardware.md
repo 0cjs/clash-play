@@ -46,6 +46,10 @@ Devices and Boards
 - ISE toolchain.
 - I/O: 34 (44-pin PLCC, VQFP); 52 (64-pin VQFP); 72 (100-pin TQFP).
 - Vcc=3.0-3.6 V. 5V tolerant I/O. 3.3V and 2.5V output capability.
+- cjs has not been able to find official specs on I/O pin Imax. The data sheet
+  measured 3.3V Voh at -4.0 mA and Vol at 8.0 mA, so those are minimums at
+  least. [This board vendor][OHO] says that those are also maximums; not clear
+  where he got that info. (Good references in there, though.)
 
 [Digikey prices][dk9572] $6-10; old PLCC-48 also available at ~$3 qty.100.
 Seeed had a [dev board][seeed-XC9572XL] (Digi-Key [1597-1318-ND]) but that
@@ -66,7 +70,7 @@ Board configuration/wiring:
 - Pin 1 connected to 50 MHz crystal oscillator and `CLK` pin.
 - 2× 20-pin headers (`•` marks gap in numbering; `P` ommited from pin names):
   - `3V3 3V3† CLK • 2 3 • 5 6 7 8 • 12 13 14 • 16 • 18 19 20 21 22 23 • GND`
-  - `3V3 3V3† • 27 28 29 30 31 32 33ᵗ 34ᵗ • 36 37 38 39 40 44 42 43ᶜ 44ᶜ • GND`
+  - `3V3 3V3† • 27 28 29 30 31 32 33ᵗ 34ᵗ • 36 37 38 39 40 41 42 43ᶜ 44ᶜ • GND`
   - Global control pins and pin notes:
     - † labeled 1.8V
     - ᶜ clock: `43`:GCK1 `44`:GCK2 `1`:GCK3
