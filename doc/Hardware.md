@@ -4,7 +4,7 @@ Hardware and Device Notes
 Contents:
 - Inventory
 - Programmers
-- Chips and Boards
+- Devices and Boards
 - Other (level conversion, etc.)
 - Homebrew
 
@@ -35,12 +35,14 @@ description has a table indicating the improvements over the DLC9 non-II
 version (it can program the fuses as well.)
 
 
-Chips and Boards
+Devices and Boards
 ----------------
 
 ### Xilinx XC9572XL High Performance CPLD
 
-- [Datasheet][XC9572XL] ([source][XC9572XL-orig]). 72 macrocells, 1600 gates.
+- [Datasheet][XC9572XL] ([source][XC9572XL-orig]).
+- [Family datasheet][XC9500XL] ([source][XC9500XL-orig]).
+- 72 macrocells, 1600 gates.
 - ISE toolchain.
 - I/O: 34 (44-pin PLCC, VQFP); 52 (64-pin VQFP); 72 (100-pin TQFP).
 - Vcc=3.0-3.6 V. 5V tolerant I/O. 3.3V and 2.5V output capability.
@@ -102,18 +104,24 @@ Other
 [DLC10]: https://www.xilinx.com/products/boards-and-kits/hw-usb-ii-g.html
 [DLC10-clone]: https://www.aliexpress.com/item/32691266814.html
 
+<!-- Devices and Boards / Xilinx XC9572XL High Performance CPLD -->
 [1597-1318-ND]: https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/102990001/5488214?s=N4IgTCBcDaIBoGECcBWA7GOAZEBdAvkA
 [33041288904]: https://www.aliexpress.com/item/33041288904.html
 [4000193528943]: https://www.aliexpress.com/item/4000193528943.html
 [B09FX9ZPLF]: https://www.amazon.co.jp/dp/B09FX9ZPLF
+[OHO]: http://www.oho-elektronik.de/pics/UM_XC9572XL.pdf
+[XC9500XL-orig]: https://www.xilinx.com/support/documentation/data_sheets/ds054.pdf
+[XC9500XL]: ./XC9500XL.pdf
 [XC9572XL-orig]: https://www.xilinx.com/support/documentation/data_sheets/ds057.pdf
 [XC9572XL]: ./XC9572XL.pdf
 [dk9572]: https://www.digikey.com/en/products/filter/embedded-cplds-complex-programmable-logic-devices/695?s=N4IgTCBcDaIBoGECcBWA7GOAZEBdAvkA
 [seeed-XC9572XL]: https://www.seeedstudio.com/XC9572XL-CPLD-development-board-v1b-p-799.html
 
+<!-- Devices and Boards / Seeed Papilio DUO-512KB -->
 [FT2232H]: http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT2232H.pdf
 [Spartan 6 LX9]: https://www.xilinx.com/support/documentation/data_sheets/ds160.pdf
 [pap-db]: https://www.seeedstudio.com/Papilio-DUO-512KB-p-2328.html
 [pap-sh]: https://www.seeedstudio.com/Classic-Computing-Shield-V1-01.html
 
+<!-- Other / Level Conversion -->
 [SN74LVC8T245]: https://www.ti.com/lit/ds/sces584b/sces584b.pdf
