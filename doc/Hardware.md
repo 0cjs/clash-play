@@ -119,8 +119,8 @@ should add a jumper to disable the decimal point if we want to use that pin
 for a clock. (But that seems unlikely.)
 
              Digit
-            Cathodes   Onboard LEDs     Segment Anodes
-    Unused  L  C  R    D2 D5 D4 D3   (XXX a-g TODO)       .
+            Cathodes   Onboard LEDs  ──── Segment Anodes ────
+    Unused  L  C  R    D2 D5 D4 D3    c  d  b  f  a  e  g  .
     ─────────────────────────────────────────────────────────────────────────
       27    28 29 30   xx xx xx xx   36 37 38 39 40 41 42 43ᶜ xx   Top side
       CLK   02 03 05   xx xx xx xx   13 14 16 18 19 20 21 22  xx   Bottom side
