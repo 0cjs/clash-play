@@ -33,19 +33,21 @@ Chips and Boards
 
 ### Xilinx XC9572XL High Performance CPLD
 
-- [Datasheet][XC9572XL]. 72 macrocells, 1600 gates.
+- [Datasheet][XC9572XL] ([source][XC9572XL-orig]). 72 macrocells, 1600 gates.
 - ISE toolchain.
 - I/O: 34 (44-pin PLCC, VQFP); 52 (64-pin VQFP); 72 (100-pin TQFP).
-- 5V tolerant I/O, 3.3V output capability.
+- Vcc=3.0-3.6 V. 5V tolerant I/O. 3.3V and 2.5V output capability.
 
 [Digikey prices][dk9572] $6-10; old PLCC-48 also available at ~$3 qty.100.
 Seeed had a [dev board][seeed-XC9572XL] (Digi-Key [1597-1318-ND]) but that
-seems to be out of production. There seems to be a standard "learning
-board" with five LEDs, 2× 20 pin headers, barrel power and JTAG turned up
-by a search for "XC9572XL" on amazon.co.jp and AliExpress, giving e.g.
-[B09FX9ZPLF][] (¥1,879), [4000193528943] ¥733 + +385 shipping. (Be careful,
-some like [33041288904][] (¥1,124 free shipping) have either an incorrect
-title or incorrect description below.)
+seems to be out of production. 
+
+There seems to be a standard "learning board" with five LEDs, 2× 20 pin
+headers, barrel power and JTAG turned up by a search for "XC9572XL" on
+amazon.co.jp and AliExpress, giving e.g. [B09FX9ZPLF][] (¥1,879),
+[4000193528943] ¥733 + +385 shipping. (Be careful, some like
+[33041288904][] (¥1,124 free shipping) have either an incorrect title or
+incorrect description below.)
 
 The [DLC10-clone] programmer appears to program this.
 
@@ -76,7 +78,8 @@ Other
 [33041288904]: https://www.aliexpress.com/item/33041288904.html
 [4000193528943]: https://www.aliexpress.com/item/4000193528943.html
 [B09FX9ZPLF]: https://www.amazon.co.jp/dp/B09FX9ZPLF
-[XC9572XL]: https://www.xilinx.com/support/documentation/data_sheets/ds057.pdf
+[XC9572XL-orig]: https://www.xilinx.com/support/documentation/data_sheets/ds057.pdf
+[XC9572XL]: ./XC9572XL.pdf
 [dk9572]: https://www.digikey.com/en/products/filter/embedded-cplds-complex-programmable-logic-devices/695?s=N4IgTCBcDaIBoGECcBWA7GOAZEBdAvkA
 [seeed-XC9572XL]: https://www.seeedstudio.com/XC9572XL-CPLD-development-board-v1b-p-799.html
 
