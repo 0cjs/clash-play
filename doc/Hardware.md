@@ -103,6 +103,31 @@ Other
   with one `DIR` input; `O̅E̅` tri-states outputs..
 
 
+Homebrew
+--------
+
+### LED board #1
+
+- [LB-303MK][] ([digikey][LB-303MKdk])
+  - 3-gang 7-segment display 12×22 mm common cathode
+  - Pinout (1-6, 7-11): `c 1 d 2 3 . ‥ b f a e g `
+
+The XC9572XL board pin assignment is designed to be used on either side. It
+avoids `31 32 33ᵗ 34ᵗ` so that you can still use the onboard LEDs. The only
+global pin used is 43 (GCK1) when connected to the top side; possibly we
+should add a jumper to disable the decimal point if we want to use that pin
+for a clock. (But that seems unlikely.)
+
+             Digit
+            Cathodes   Onboard LEDs     Segment Anodes
+    Unused  L  C  R    D2 D5 D4 D3   (XXX a-g TODO)       .
+    ─────────────────────────────────────────────────────────────────────────
+      27    28 29 30   xx xx xx xx   36 37 38 39 40 41 42 43ᶜ xx   Top side
+      CLK   02 03 05   xx xx xx xx   13 14 16 18 19 20 21 22  xx   Bottom side
+
+XXX what about switches?
+
+
 
 <!-------------------------------------------------------------------->
 [DLC10]: https://www.xilinx.com/products/boards-and-kits/hw-usb-ii-g.html
@@ -129,3 +154,7 @@ Other
 
 <!-- Other / Level Conversion -->
 [SN74LVC8T245]: https://www.ti.com/lit/ds/sces584b/sces584b.pdf
+
+<!-- Homebrew -->
+[LB-303MK]: https://fscdn.rohm.com/en/products/databook/datasheet/opto/led_display/numeric/lb-303ak.pdf
+[LB-303MKdk]: https://www.digikey.com/en/products/detail/rohm-semiconductor/LB-303MK/4003466
