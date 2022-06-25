@@ -224,7 +224,9 @@ proc add_source_files {} {
 
    puts "$myScript: Adding sources to project..."
 
-   xfile add "../clash-play/verilog/Button1.topEntity/topEntity.v"
+   #   Start of attempt to run Clash output.
+   #xfile add "../clash-play/verilog/Button1.topEntity/topEntity.v"
+
    xfile add "digits.v"
    xfile add "lctech_xc9572xl.ucf"
    xfile add "ledboard1_top.ucf"
