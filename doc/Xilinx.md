@@ -55,6 +55,7 @@ The installer stages are:
 
 You then need to activate a license:
 
+    #   See warning in "Running" section below about this
     source /opt/Xilinx/14.7/ISE_DS/settings64.sh
     xlcm
 
@@ -86,10 +87,64 @@ the licences you can download..
 Once you have the license file (which you can rename), choose the "Load
 License" button from the "Manage Licenses" tab of `xlcm`.
 
-### Running
+### "Cable" (Programming Pod) Setup
 
+For the "cable" (programmer) installation, you can use an open source
+Windriver6 replacement as mentioned in [Xilinx JTAG Linux][jtlin].
+
+    #   Ensure your shell is one where you did _not_ source settings64.sh
+
+    #   fxload downloads programs to FX and FX2 devices.
+    sudo apt-get install build-essential libusb-dev fxload
+    git clone git://git.zerfleddert.de/usb-driver
+    cd usb-driver
+    make            # some warnings will be emitted
+    umask 022
+    sudo ./setup_pcusb /opt/Xilinx/14.7/ISE_DS/ISE
+    #   If programming pod was plugged in, unplug and replug.
+
+The final command add `/etc/udev/rules.d/xusbdfwu.rules` that will detect
+the various Xilinx programming pods and run `fxload` to load the firmware
+into them when plugged in. (It also sets permissions on the device when it
+restarts after firmware load.) Without this, connecting a pod will show (in
+the kernel log) something like just the following:
+
+    new high-speed USB device number 5 using ehci-pci
+    New USB device found, idVendor=03fd, idProduct=0013, bcdDevice= 0.00
+    New USB device strings: Mfr=0, Product=0, SerialNumber=0
+
+With the udev actions in place, you will see further messages that show that,
+after being programmed, the device disconnects and returns as idProduct=0008 or
+similar:
+
+    New USB device found, idVendor=03fd, idProduct=0008, bcdDevice= 0.00
+    New USB device strings: Mfr=1, Product=2, SerialNumber=0
+    Product: XILINX
+    Manufacturer: XILINX
+
+See below for the `LD_PRELOAD` stuff for running `impact`.
+
+## Running
+
+    #   Set up the Xilinx development environment. This will radically
+    #   change library and other paths, so after this don't try to use the
+    #   window for "regular" work.
     source /opt/Xilinx/14.7/ISE_DS/settings64.sh
     ise &
+
+The `libusb-driver.so` file must be in the library path when running the
+`impact` program to do downloads; usually this is done with:
+
+    LD_PRELOAD=.../usb-driver/libusb-driver.so impact ...
+
+Occasionally the driver will be unable to connect, producing errors like
+the following. Re-running the program usually fixes this.
+
+    usb_claim_interface: 0 -> -9 (could not claim interface 0: Bad file descriptor)
+    usb_transfer: -9 (error sending control message: Bad file descriptor)
+    write cmdbuffer failed FFFFFFFFFFFFFFF7.
+    Loopback test failed. Sent character = 00, Received character = 00.
+    Cable connection failed.
 
 
 ISE Products
@@ -127,4 +182,5 @@ screen.
 
 <!-------------------------------------------------------------------->
 [ise-dl]: https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive-ise.html
+[jtlin]: https://www.george-smart.co.uk/fpga/xilinx_jtag_linux/
 [lsc]: https://www.xilinx.com/support/licensing_solution_center.html
