@@ -76,7 +76,9 @@ Board configuration/wiring:
     - ᶜ clock: `43`:GCK1 `44`:GCK2 `1`:GCK3
     - ᵗ tristate: `36`:GTS1 `34`:GTS2
     - ʳ reset: `33`:GSR
-- LEDs: D1:Vcc;  D2:`31`  D3:`34`  D4:`33`  D5:`32`  (linked by the 4 jumpers)
+- LEDs: D1:Vcc;  D5:`31`  D4:`34`  D3:`33`  D2:`32`
+  - The LEDs have Vcc on the anode and are linked through the four jumpers
+    to the above pins. Bring the pins low to illuminate the LEDs.
 - Non-I/O chip pins (none on I/O headers except power):
     - GND: `4` `17` `25`
     - Vccint (3.3V): `15` `35`
@@ -124,7 +126,7 @@ we want to use that pin for a clock. (But that seems unlikely.)
 
              Digit
             Cathodes   Onboard LEDs  ──── Segment Anodes ────
-    Unused  L  C  R    D2 D5 D4 D3    c  d  b  f  a  e  g  .
+    Unused  L  C  R    D5 D4 D3 D2    c  d  b  f  a  e  g  .
     ─────────────────────────────────────────────────────────────────────────
       27    28 29 30   xx xx xx xx   36 37 38 39 40 41 42 43ᶜ xx   Top side
       CLK   02 03 05   xx xx xx xx   13 14 16 18 19 20 21 22  xx   Bottom side
