@@ -22,9 +22,9 @@ module system_top #(
 	end
 
 	always @* begin
-		if      (DIGIT[0]) SEG = segs0;
-		else if (DIGIT[1]) SEG = segs1;
-		else               SEG = segs2;
+		if      (!DIGIT[0]) SEG = segs0;
+		else if (!DIGIT[1]) SEG = segs1;
+		else                SEG = segs2;
 	end
 
 	always @(posedge clk) begin
