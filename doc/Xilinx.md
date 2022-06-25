@@ -53,7 +53,43 @@ The installer stages are:
 4. Install location: `/opt/Xilinx`
 5. Summary: click "Install" button.
 
-XXX later, go to licensing site and get license.
+You then need to activate a license:
+
+    source /opt/Xilinx/14.7/ISE_DS/settings64.sh
+    xlcm
+
+The second tab, "Manage Licenses," will have a "Local System Information"
+panel showing your Network Interface Card (NIC) ID. If this is all-zeros
+you will not be able to use a license. The License Manager reads the MAC
+address from an `eth#`, so if you don't have one you can create one with:
+
+    sudo ip link add eth9 type dummy
+    ip link show eth9
+    #   The above will select a MAC address through unknown means (cjs got
+    #   7e:62:8b:e2:2b:97). To re-use an existing license address:
+    #sudo ip link set eth9 address 7e:62:8b:01:23:45
+
+Go to the [Licensing Solution Center][lsc] and from that page click on any
+of the "Xilinx Product Licensing Site" links. (Those links must be clicked
+from this page; they can't be saved.) This takes you to the usual address
+confirmation screen; click the red __Next__ button at the bottom. This will
+take you to a Product Licensing page on `xilinx.entitlenow.com`; select the
+__ISE Embedded Edition License__ and click "Generate Node-Locked License."
+(If you can't see the full list because the footer is covering it, delete
+the `<footer>` element in your browser's developer DOM browser.) You'll
+need to select a host, add its MAC address, etc. Once the process is
+complete it will e-mail you the license file; you can also download it from
+<http://www.xilinx.com/getlicense>; it will eventually take you to the same
+page above where you'll need to click on the "Manage Licenses" tab to list
+the licences you can download..
+
+Once you have the license file (which you can rename), choose the "Load
+License" button from the "Manage Licenses" tab of `xlcm`.
+
+### Running
+
+    source /opt/Xilinx/14.7/ISE_DS/settings64.sh
+    ise &
 
 
 ISE Products
@@ -91,3 +127,4 @@ screen.
 
 <!-------------------------------------------------------------------->
 [ise-dl]: https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive-ise.html
+[lsc]: https://www.xilinx.com/support/licensing_solution_center.html
