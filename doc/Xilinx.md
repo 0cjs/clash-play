@@ -27,19 +27,31 @@ you don't have one.
     cd /opt
     tar xf ~/Downloads/Xilinx_ISE_DS_Lin_14.7_1015_1.tar
 
-After this, run `/opt/Xilinx*/xsetup`. You may get some messages along the
-lines of `libncurses.so.5: cannot open shared object file...`. Use `apt-file
-search` on the filenames to find the packages that provide them and install
-those packages. Once all the requirements are installed, a graphical installer
+The `xsetup` program will need an install location separate from the installer
+you downloaded and extracted; this defaults to `/opt/Xilinx/`. The following
+will set you up to run the install as a non-root user:
+
+    mkdir /opt/Xilinx
+    chown -R $(id -u):$(id -g) /opt/xilinx
+    umask 022
+    /opt/Xilinx_ISE*/xsetup
+
+On the first run you may get some messages along the lines of
+`libncurses.so.5: cannot open shared object file...`. Use `apt-file search`
+on the filenames to find the packages that provide them and install those
+packages. Once all the requirements are installed, a graphical installer
 will start.
 
-The first stage of the install is to confirm that Xilinx owns all your data,
-your computer, you personally, all your relatives, etc. After several stages of
-this you will be asked to select the products to install; select __ISE Design
-Suite Logic Edition.__ On the next screen, ensure that __Acquire or Manage a
-License Key__ is checked (and you probably want to deselect WebTalk).
-
-XXX Do we need __Install Cable Drivers?__
+The installer stages are:
+1. Various licensing screens: confirm that Xilinx owns all your data, your
+   computer, you personally, all your relatives, etc.
+2. Select the products to install: __ISE Design Suite Logic Edition.__
+3. Install options:
+   - YES: __Acquire or Manage a License Key__
+   - NO:  WebTalk (unless you want it)
+   - NO:  __Install Cable Drivers__
+4. Install location: `/opt/Xilinx`
+5. Summary: click "Install" button.
 
 XXX later, go to licensing site and get license.
 
