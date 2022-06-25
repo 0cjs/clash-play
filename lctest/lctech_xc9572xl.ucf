@@ -1,0 +1,10 @@
+NET "OSC_50M"     LOC = P1;
+# NET "LED[0]"      LOC = P34;
+# NET "LED[1]"      LOC = P33;
+# NET "LED[2]"      LOC = P32;
+# NET "LED[3]"      LOC = P31;
+# NET "P12"         LOC = P12;
+# NET "P13"         LOC = P13;
+
+NET "OSC_50M" TNM_NET = "OSC_50M_CLK";
+TIMESPEC "TS_OSC_50M_CLK" = PERIOD "OSC_50M_CLK" 50.00 MHz HIGH 50% INPUT_JITTER 100ps;

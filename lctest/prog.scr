@@ -1,0 +1,7 @@
+setMode -bscan
+setCable -port usb21
+setcablespeed -speed 6000000
+identify
+assignfile -p 1 -file system_top.jed
+program -p 1 -e -v
+quit

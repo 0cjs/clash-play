@@ -1,0 +1,16 @@
+# LED Board #1, top side
+NET "DIGIT[0]"    LOC = P28;
+NET "DIGIT[1]"    LOC = P29;
+NET "DIGIT[2]"    LOC = P30;
+NET "SEG[0]"      LOC = P40;
+NET "SEG[1]"      LOC = P38;
+NET "SEG[2]"      LOC = P36;
+NET "SEG[3]"      LOC = P37;
+NET "SEG[4]"      LOC = P41;
+NET "SEG[5]"      LOC = P39;
+NET "SEG[6]"      LOC = P42;
+NET "SEG[7]"      LOC = P43;
+NET "BUTTON[0]"   LOC = P34;
+NET "BUTTON[1]"   LOC = P33;
+NET "BUTTON[2]"   LOC = P32;
+NET "BUTTON[3]"   LOC = P31;
