@@ -112,11 +112,15 @@ Homebrew
   - 3-gang 7-segment display 12×22 mm common cathode
   - Pinout (1-6, 7-11): `c 1 d 2 3 . ‥ b f a e g `
 
-The XC9572XL board pin assignment is designed to be used on either side. It
-avoids `31 32 33ᵗ 34ᵗ` so that you can still use the onboard LEDs. The only
-global pin used is 43 (GCK1) when connected to the top side; possibly we
-should add a jumper to disable the decimal point if we want to use that pin
-for a clock. (But that seems unlikely.)
+The XC9572XL board pin assignment is designed to be used on either side.
+"Top" and "bottom" are as viewed with "Xilinx CPLD" label on the silk
+screen in normal reading position. The LED board extends outward away from
+the CPLD board, leaving the CLPD board's jumpers and switches accessible.
+
+The LED board avoids using `31 32 33ᵗ 34ᵗ` so that you can still use the
+onboard LEDs. The only global pin used is 43 (GCK1) when connected to the
+top side; possibly we should add a jumper to disable the decimal point if
+we want to use that pin for a clock. (But that seems unlikely.)
 
              Digit
             Cathodes   Onboard LEDs  ──── Segment Anodes ────
@@ -124,6 +128,9 @@ for a clock. (But that seems unlikely.)
     ─────────────────────────────────────────────────────────────────────────
       27    28 29 30   xx xx xx xx   36 37 38 39 40 41 42 43ᶜ xx   Top side
       CLK   02 03 05   xx xx xx xx   13 14 16 18 19 20 21 22  xx   Bottom side
+
+__NOTE:__ Due to a build error, the initial prototype has the segment anodes
+above all shifted one column to the right, using `P36` through `P44`.
 
 XXX what about switches?
 
