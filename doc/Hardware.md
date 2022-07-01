@@ -100,6 +100,10 @@ Other
 
 ### Level Conversion
 
+- TI application report [Selecting the Right Level-Translation
+  Solution][scea035a] is a good reference. In particular, §5 covers how to
+  identify overvoltage-tolerant devices and their possible duty-cycle
+  issues.
 - TI [SN74LVC8T245] 8-Bit Dual-Supply Bus Transceiver With Configurable
   Voltage Translation and 3-State Outputs. All 8 bus lines switch direction
   with one `DIR` input; `O̅E̅` tri-states outputs..
@@ -163,6 +167,7 @@ XXX what about switches?
 
 <!-- Other / Level Conversion -->
 [SN74LVC8T245]: https://www.ti.com/lit/ds/sces584b/sces584b.pdf
+[scea035a]: TI-scea035a.pdf
 
 <!-- Homebrew -->
 [LB-303MK]: https://fscdn.rohm.com/en/products/databook/datasheet/opto/led_display/numeric/lb-303ak.pdf
