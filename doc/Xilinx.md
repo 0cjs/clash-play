@@ -124,7 +124,7 @@ similar:
 
 See below for the `LD_PRELOAD` stuff for running `impact`.
 
-## Running
+### Running
 
     #   Set up the Xilinx development environment. This will radically
     #   change library and other paths, so after this don't try to use the
