@@ -50,6 +50,8 @@ Devices and Boards
   measured 3.3V Voh at -4.0 mA and Vol at 8.0 mA, so those are minimums at
   least. [This board vendor][OHO] says that those are also maximums; not clear
   where he got that info. (Good references in there, though.)
+- [[OHO]] says that "a pullup cannot reach 5V except in tristate" (because
+  the high output on the board is still sinking current from the pullup?).
 
 [Digikey prices][dk9572] $6-10; old PLCC-48 also available at ~$3 qty.100.
 Seeed had a [dev board][seeed-XC9572XL] (Digi-Key [1597-1318-ND]) but that
