@@ -96,6 +96,11 @@ The [DLC10-clone] programmer appears to program this.
 - Xilinx [Spartan 6 LX9], FTDI [FT2232H][] (2× USB UART/FIFO), 512K SRAM,
   8M flash, ATmega32U4.
 
+### ATF15xx 
+
+5V CPLDs that are still in production.
+[Digikey][d-ATF15] from $5.72; [Mouser][m-ATF15] from $5.87.
+
 
 Other
 -----
@@ -166,6 +171,10 @@ XXX what about switches?
 [Spartan 6 LX9]: https://www.xilinx.com/support/documentation/data_sheets/ds160.pdf
 [pap-db]: https://www.seeedstudio.com/Papilio-DUO-512KB-p-2328.html
 [pap-sh]: https://www.seeedstudio.com/Classic-Computing-Shield-V1-01.html
+
+<!-- Devices and Boards / ATF15xx --?
+[d-ATF15]: https://www.digikey.com/en/products/filter/embedded/cplds-complex-programmable-logic-devices/695?s=N4IgTCBcDaIIIBUBiBGArABgBwgLoF8g
+[m-ATF15]: https://www.mouser.com/c/?q=ATF1508
 
 <!-- Other / Level Conversion -->
 [SN74LVC8T245]: https://www.ti.com/lit/ds/sces584b/sces584b.pdf
