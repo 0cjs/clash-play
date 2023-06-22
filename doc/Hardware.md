@@ -96,10 +96,14 @@ The [DLC10-clone] programmer appears to program this.
 - Xilinx [Spartan 6 LX9], FTDI [FT2232H][] (2× USB UART/FIFO), 512K SRAM,
   8M flash, ATmega32U4.
 
-### ATF15xx 
+### ATF15xx
 
 5V CPLDs that are still in production.
 [Digikey][d-ATF15] from $5.72; [Mouser][m-ATF15] from $5.87.
+
+DIP Breakout boards usable on breadboards available at
+[[atf1508_plcc84_breakout]] and [[atf1504_plcc44_breakout]].
+Discussion at [6502.org][f6-7631]
 
 
 Other
@@ -172,8 +176,11 @@ XXX what about switches?
 [pap-db]: https://www.seeedstudio.com/Papilio-DUO-512KB-p-2328.html
 [pap-sh]: https://www.seeedstudio.com/Classic-Computing-Shield-V1-01.html
 
-<!-- Devices and Boards / ATF15xx --?
+<!-- Devices and Boards / ATF15xx -->
+[atf1504_plcc44_breakout]: https://github.com/adrienkohlbecker/atf1504_plcc44_breakout
+[atf1508_plcc84_breakout]: https://github.com/adrienkohlbecker/atf1508_plcc84_breakout
 [d-ATF15]: https://www.digikey.com/en/products/filter/embedded/cplds-complex-programmable-logic-devices/695?s=N4IgTCBcDaIIIBUBiBGArABgBwgLoF8g
+[f6-7631]: http://forum.6502.org/viewtopic.php?f=4&t=7631
 [m-ATF15]: https://www.mouser.com/c/?q=ATF1508
 
 <!-- Other / Level Conversion -->
