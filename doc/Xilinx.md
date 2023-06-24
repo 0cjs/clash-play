@@ -3,6 +3,10 @@ Xilinx Development Tools
 
 XXX summarise here why we need them to build stuff.
 
+[This forum.6502.org thread][f6 7634] also discusses runing Xilinx software
+under Linux.
+
+
 ### Downloading
 
 You'll need about 6-7 GB of free disk space for the Linux tar archive and that
@@ -181,6 +185,7 @@ screen.
 
 
 <!-------------------------------------------------------------------->
+[f6 7634]: http://forum.6502.org/viewtopic.php?f=10&t=7634
 [ise-dl]: https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive-ise.html
 [jtlin]: https://www.george-smart.co.uk/fpga/xilinx_jtag_linux/
 [lsc]: https://www.xilinx.com/support/licensing_solution_center.html
